@@ -76,4 +76,4 @@ services:
     #   - --config.file=/etc/prometheus/prometheus.yml
     volumes:
       # - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
-      - ./data/prometheus:/prometheus
+      - ./_storage/prometheus:/prometheus
