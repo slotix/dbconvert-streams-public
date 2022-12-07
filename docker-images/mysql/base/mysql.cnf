@@ -1,0 +1,26 @@
+[mysqld]
+#
+# ----------------------------------------------
+# Enable the binlog for replication & CDC
+# ----------------------------------------------
+#
+server_id=181818
+log_bin=mysql-bin
+binlog_format=row
+binlog_row_image =  full
+binlog_row_event_max_size=16384
+
+# enforce-gtid-consistency and gtid-mode only takes effect if binary logging takes place for a statement.
+# No need to switch it ON for row based log.
+enforce-gtid-consistency=OFF
+gtid-mode=OFF
+max_connections=250
+#replica_parallel_workers=10
+#binlog_stmt_cache_size=65536
+#binlog_cache_size=65536
+#rpl_read_size=16384
+
+bind-address = 0.0.0.0
+# Require clients to connect either using SSL
+# or through a local socket file
+# require_secure_transport = ON
