@@ -5,4 +5,3 @@ listen_addresses = '*'
 wal_level=logical
 max_replication_slots=5
 max_wal_senders=10
-wal_sender_timeout=0
