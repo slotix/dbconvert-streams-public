@@ -18,7 +18,7 @@
   },
   "target": {
     "type": "mysql",
-    "connection": "root:123456@tcp(mysql-target:3306)/mysql"
+    "connection": "root:123456@tcp(mysql-target:3306)/target"
   },
   "limits": {
     "numberOfEvents": 0,

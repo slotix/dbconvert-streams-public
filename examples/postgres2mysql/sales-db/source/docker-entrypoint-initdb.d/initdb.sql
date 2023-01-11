@@ -85,4 +85,4 @@ CREATE TABLE IF NOT EXISTS order_status (
 
 
 -- create target db
-CREATE DATABASE target;
+-- CREATE DATABASE target;

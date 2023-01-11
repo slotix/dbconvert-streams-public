@@ -45,13 +45,13 @@ docker run -it --rm \
     --network sales-db_default \
     curlimages/curl  \
     --request POST \
-    --url http://dbs-api:8020/api/v1/streams\?file={$PWD}/pg2mysql.json
+    --url http://dbs-api:8020/api/v1/streams\?file=./pg2mysql.json
 ```
 
 To send the request using curl installed locally, you can simply run the `curl` command without the `docker run` command.
 
 ```
-curl --request POST --url http://127.0.0.1:8020/api/v1/streams\?file={$PWD}/pg2mysql.json    
+curl --request POST --url http://127.0.0.1:8020/api/v1/streams\?file=./pg2mysql.json    
 ```
 
 ### Step 2. Populate source tables with sample data.
