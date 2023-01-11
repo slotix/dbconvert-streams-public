@@ -1,0 +1,26 @@
+{
+  "source": {
+    "type": "mysql",
+    "connection": "root:123456@tcp(mysql-source:3306)/source",
+    "filter": {
+      "tables": [
+        { "name": "product", "operations": ["insert"]},
+        { "name": "country", "operations": ["insert"]},
+        { "name": "city", "operations": ["insert"]},
+        { "name": "store", "operations": ["insert"]},
+        { "name": "users", "operations": ["insert"]},
+        { "name": "status_name", "operations": ["insert"]},
+        { "name": "sale", "operations": ["insert"]},
+        { "name": "order_status", "operations": ["insert"]}
+      ]
+    }
+  },
+  "target": {
+    "type": "postgresql",
+    "connection": "postgres://postgres:postgres@postgres-target:5432/postgres"
+  },
+  "limits": {
+    "numberOfEvents": 0,
+    "elapsedTime": 0
+  }
+}
