@@ -13,7 +13,8 @@ services:
     depends_on:
       - nats
     volumes:
-      - ./pg2mysql.json:/pg2mysql.json:ro
+      - ./pg2pg.json:/pg2pg.json:ro
+
 
   dbs-source-reader:
     container_name: source-reader
@@ -38,6 +39,7 @@ services:
     depends_on:
       - dbs-source-reader
 
+
   nats:
     container_name: nats
     image: nats
@@ -60,6 +62,7 @@ services:
     # volumes:
       # - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
       # - ../_storage/prometheus:/prometheus
+
   
   postgres-source:
     container_name: postgres-source
@@ -72,13 +75,15 @@ services:
       - '5432:5432'
 
 
-  mysql-target:
-    container_name: mysql-target
-    image: mysql:8.0
+  postgres-target:
+    container_name: postgres-target
+    image: postgres:15-alpine
     environment:
-      - MYSQL_ROOT_PASSWORD=123456
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    command: postgres
     ports:
-      - '3306:3306'
+      - '5433:5432'
 
 
   adminer:
@@ -87,3 +92,21 @@ services:
     restart: always
     ports:
        - 8080:8080
+
+  # pgadmin:
+  #   container_name: pgadmin
+  #   image: dpage/pgadmin4:latest
+  #   #restart: always
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: postgres@dbconvert.com
+  #     PGADMIN_DEFAULT_PASSWORD: postgres
+  #   # depends_on:
+  #   #   - postgres
+  #   # volumes: 
+  #     # !!!! sudo chown -R 5050:5050 <host_directory>
+  #     # !!!! sudo chown 5050:5050 client.key client.crt ca.crt
+  #     # - ./_storage/pgadmin:/var/lib/pgadmin
+
+  #   ports:
+  #     - "5050:80"
+  #   network_mode: host
