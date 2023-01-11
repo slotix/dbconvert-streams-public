@@ -1,0 +1,86 @@
+version: '3.9'
+services:
+  dbs-api:
+    container_name: api
+    image: slotix/dbs-api
+    entrypoint:
+      - ./dbs-api
+      - --nats=nats:4222
+      - --source=source-reader:8021
+      - --target=target-writer:8022
+    ports:
+      - 8020:8020
+    depends_on:
+      - nats
+    volumes:
+      - ./mysql2mysql.json:/mysql2mysql.json:ro
+
+  dbs-source-reader:
+    container_name: source-reader
+    image: slotix/dbs-source-reader
+    entrypoint:
+      - ./dbs-source-reader
+      - --nats=nats:4222
+    ports:
+      - 8021:8021
+    depends_on:
+      - dbs-api
+
+  dbs-target-writer:
+    container_name: target-writer
+    image: slotix/dbs-target-writer
+    entrypoint:
+      - ./dbs-target-writer
+      - --nats=nats:4222
+      - --prometheus=http://prometheus:9090
+    ports:
+      - 8022:8022
+    depends_on:
+      - dbs-source-reader
+
+  nats:
+    container_name: nats
+    image: nats
+    entrypoint: /nats-server
+    command: "--jetstream -m 8222 --store_dir /data/nats-server"
+    ports:
+      - 4222:4222
+      - 8222:8222
+    # volumes:
+      # - ../_storage/nats:/data/nats-server/jetstream
+
+  prometheus:
+    image: slotix/dbs-prometheus:latest
+    container_name: prom
+    user: root
+    ports:
+      - 9090:9090
+    # command:
+      # - --config.file=/etc/prometheus/prometheus.yml
+    # volumes:
+    #   - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    #   - ../_storage/prometheus:/prometheus
+
+  mysql-source:
+    container_name: mysql-source
+    build: ./source 
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    ports:
+      - '3306:3306'
+
+
+  mysql-target:
+    container_name: mysql-target
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    ports:
+      - '3307:3306'
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+       - 8080:8080
