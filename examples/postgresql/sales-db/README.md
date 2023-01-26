@@ -30,10 +30,22 @@ The structure of tables is shown on the diagram below.
 Both of these databases are usually on different physical servers in a production environment. But in our example, we will run them on the same machine in different containers.
 
 
-
 ## Execution.
 
-### Step 1. Send stream configuration.
+
+### Step 1. Start services.
+
+```bash
+docker-compose up  --build -d
+```
+
+The docker-compose up command is used to start and run all the services defined in the 'docker-compose.yml' file.
+
+The command above will start the services in the background, build the images and use the docker-compose.yml file to configure the services.
+
+Note that the command needs to be ran in the same directory where the docker-compose.yml file is located.
+
+### Step 2. Send stream configuration.
 
 Send a request to the DBConvert Streams API with configuration parameters.  
 You can either send the request using `curl` in a containerized environment or using `curl` installed locally.
@@ -54,7 +66,7 @@ To send the request using curl installed locally, you can simply run the `curl` 
 curl --request POST --url http://127.0.0.1:8020/api/v1/streams\?file=./pg2pg.json    
 ```
 
-### Step 2. Populate source tables with sample data.
+### Step 3. Populate source tables with sample data.
 
 The Variables at the top of `fill_tables.sql` file are used to specify the number of rows to create in the corresponding table.
 
