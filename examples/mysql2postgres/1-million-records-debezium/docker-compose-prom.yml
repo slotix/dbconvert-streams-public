@@ -1,0 +1,89 @@
+version: '2'
+services:
+  zookeeper:
+    image: quay.io/debezium/zookeeper:${DEBEZIUM_VERSION}
+    ports:
+     - 2181:2181
+     - 2888:2888
+     - 3888:3888
+  kafka:
+    image: quay.io/debezium/kafka:${DEBEZIUM_VERSION}
+    ports:
+     - 9092:9092
+    links:
+     - zookeeper
+    environment:
+     - ZOOKEEPER_CONNECT=zookeeper:2181
+  mysql-source:
+    # image: quay.io/debezium/example-mysql:${DEBEZIUM_VERSION}
+    build: ./source 
+    container_name: mysql-source
+    ports:
+     - 3306:3306
+    environment:
+     - MYSQL_ROOT_PASSWORD=123456
+     - MYSQL_USER=mysqluser
+     - MYSQL_PASSWORD=mysqlpw 
+  postgres-target:
+    # image: quay.io/debezium/postgres:9.6
+    image: postgres:15-alpine
+    ports:
+     - "5432:5432"
+    environment:
+     - POSTGRES_USER=postgres
+     - POSTGRES_PASSWORD=postgres
+     - POSTGRES_DB=postgres
+  connect:
+    image: debezium/connect-jdbc:${DEBEZIUM_VERSION}
+    container_name: connect-jdbc
+    build:
+      context: debezium-postgres
+      args:
+        DEBEZIUM_VERSION: ${DEBEZIUM_VERSION}
+    ports:
+     - 8083:8083
+     - 5005:5005
+     - 8081:8080 #metrics related port
+    links:
+     - kafka
+     - mysql-source
+     - postgres-target
+    environment:
+     - BOOTSTRAP_SERVERS=kafka:9092
+     - GROUP_ID=1
+     - CONFIG_STORAGE_TOPIC=my_connect_configs
+     - OFFSET_STORAGE_TOPIC=my_connect_offsets
+     - STATUS_STORAGE_TOPIC=my_source_connect_statuses
+     - KAFKA_OPTS=-javaagent:/kafka/connect/metrics/jmx_prometheus_javaagent.jar=8080:/kafka/connect/metrics/jmx-kafka-connect-config.yml
+     - JMX_HOST=0.0.0.0
+     - JMX_PORT=9012
+    volumes:
+      - ./jars/jmx_prometheus_javaagent-0.16.1.jar:/kafka/connect/metrics/jmx_prometheus_javaagent.jar
+      - ./conf/jmx-kafka-connect-config.yml:/kafka/connect/metrics/jmx-kafka-connect-config.yml
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    command: --web.enable-lifecycle  --config.file=/etc/prometheus/prometheus.yml
+    ports:
+     - 9090:9090
+    links:
+     - connect
+    volumes:
+      - ./prometheus:/etc/prometheus/
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4:latest
+    #restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: postgres@dbconvert.com
+      PGADMIN_DEFAULT_PASSWORD: postgres
+    depends_on:
+      - postgres-target
+    # volumes: 
+      # !!!! sudo chown -R 5050:5050 <host_directory>
+      # !!!! sudo chown 5050:5050 client.key client.crt ca.crt
+      # - ./_storage/pgadmin:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    network_mode: host
