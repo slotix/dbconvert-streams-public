@@ -91,3 +91,7 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 ```
+
+1. The line `LOAD DATA INFILE '/var/lib/mysql-files/products.csv' INTO TABLE products` loads data from a CSV file located at `/var/lib/mysql-files/products.csv` into a table named `products` in the database.
+2. The following lines `FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;` specify the options for the data to be loaded into the table, such as the field separator (`,`), the character that encloses the fields (`"`), the line separator (`\n`), and to ignore the first row of the CSV file.
+
