@@ -1,6 +1,5 @@
 The "io.debezium.connector.mysql.MySql" Connector from Debezium will be utilized for capturing changes in data from a MySQL database. The target for the captured data will be a Postgres database, with the "io.confluent.connect.jdbc.JdbcSinkConnector" connector class serving as the sink connector for the Postgres database.
 
-
 ## Table structure.
 
 ```bash
@@ -25,13 +24,13 @@ We will populate the 'products' source table with data from the 'products.csv' f
 Both of these databases are usually on different physical servers in a production environment. But in our example, we will run them on the same machine in different containers.
 This is a MySQL script to:
 
-
 ## Start.
 
 ```bash
 export DEBEZIUM_VERSION=2.0
 docker-compose up --build -d
 ```
+
 ### Deployment
 
 #### Deploy of source connector to debezium.
@@ -50,8 +49,6 @@ curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json"
 
 Visit http://localhost:8083/connectors/ to view a list of active and running connectors.
 
-
-
 ### Populate source table with sample data.
 
 To execute the SQL script that populates the source table with sample data, you can run the following commands:
@@ -59,26 +56,36 @@ To execute the SQL script that populates the source table with sample data, you 
 ```
 docker compose exec -it \
     mysql-source \
-    mysql -u root -p123456 -D source 
+    mysql -u root -p123456 -D source
 ```
 
 In MySQL prompt, execute the following command
 
 ```sql
+SELECT CURTIME();
 LOAD DATA INFILE '/var/lib/mysql-files/products.csv' INTO TABLE products
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
+SELECT CURTIME();
 ```
 
-### Verify the Record Count in the PostgreSQL Target. 
+The code consists of three SQL commands executed in order:
+
+1. The first line `SELECT CURTIME();` retrieves the current time from the MySQL database server.
+2. The next line `LOAD DATA INFILE '/var/lib/mysql-files/products.csv' INTO TABLE products` loads data from a CSV file located at `/var/lib/mysql-files/products.csv` into a table named `products` in the database.
+3. The following lines `FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;` specify the options for the data to be loaded into the table, such as the field separator (`,`), the character that encloses the fields (`"`), the line separator (`\n`), and to ignore the first row of the CSV file.
+4. The final line `SELECT CURTIME();` retrieves the current time again.
+
+### Verify the Record Count in the PostgreSQL Target.
+
 ```bash
  docker compose  exec postgres-target bash -c 'psql -U $POSTGRES_USER $POSTGRES_DB -c "select count(*) from products"'
 ```
 
 ### Stop the demo
+
 ```
 docker compose down --remove-orphans
 ```
-
