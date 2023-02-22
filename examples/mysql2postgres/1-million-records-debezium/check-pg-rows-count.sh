@@ -15,5 +15,5 @@ do
       else  
         echo "# of processed records: $processed"
   fi
-  sleep 2
+  sleep 3
 done

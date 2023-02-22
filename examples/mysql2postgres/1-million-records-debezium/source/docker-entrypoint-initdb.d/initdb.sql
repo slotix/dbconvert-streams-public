@@ -4,7 +4,7 @@ GRANT ALL PRIVILEGES ON source.* TO 'mysqluser'@'%';
 USE `source`;
 
 CREATE TABLE IF NOT EXISTS `products` (
-`id` BIGINT NOT NULL,
+`id` BIGINT NOT NULL AUTO_INCREMENT,
 `name` VARCHAR(255) NOT NULL,
 `price` DECIMAL(10, 2) NOT NULL,
 `weight` DOUBLE NULL,

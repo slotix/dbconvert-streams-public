@@ -8,4 +8,3 @@ FROM slotix/dbs-mysql:8
 
 # copy sql script to create database and table structures.
 COPY ./docker-entrypoint-initdb.d /docker-entrypoint-initdb.d
-ADD https://dbconvert.com/downloads/dbs/sample-data/products.csv /var/lib/mysql-files

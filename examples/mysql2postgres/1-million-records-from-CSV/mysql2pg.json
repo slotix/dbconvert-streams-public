@@ -1,0 +1,19 @@
+{
+  "source": {
+    "type": "mysql",
+    "connection": "root:123456@tcp(mysql-source:3306)/source",
+    "filter": {
+      "tables": [
+        { "name": "products", "operations": ["insert"]}
+      ]
+    }
+  },
+  "target": {
+    "type": "postgresql",
+    "connection": "postgres://postgres:postgres@postgres-target:5432/postgres"
+  },
+  "limits": {
+    "numberOfEvents": 1000000,
+    "elapsedTime": 0
+  }
+}
