@@ -50,6 +50,17 @@ curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json"
 
 Visit http://localhost:8083/connectors/ to view a list of active and running connectors.
 
+
+### Monitor the number of records coming to the target database.
+Run the script int the new terminal.
+
+```bash
+export DEBEZIUM_VERSION=2.0
+./count.sh
+```
+
+It is used to monitor the number of records in the target database and calculate the time needed to transfer 1 Million records from source to target databases.
+ 
 ### Populate source table with sample data.
 
 To execute the SQL script that populates the source table with sample data, you can run the following commands:
@@ -95,11 +106,6 @@ The code consists of three SQL commands executed in order:
 2. The next command will insert 1 million rows of random data into a table named `products`.
 4. The final line `SELECT CURTIME();` retrieves the current time again.
 
-### Verify the Record Count in the PostgreSQL Target.
-
-```bash
-docker compose  exec postgres-target bash -c 'psql -U $POSTGRES_USER $POSTGRES_DB -c "select count(*) from products"'
-```
 
 ### Stop the demo
 ```
