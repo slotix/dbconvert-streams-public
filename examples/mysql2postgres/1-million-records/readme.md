@@ -45,11 +45,9 @@ These databases are usually on different physical servers in a production enviro
 docker-compose up  --build -d
 ```
 
-The docker-compose up command starts and runs all the services defined in the 'docker-compose.yml' file.
+The command above will build and start the services listed in `docker-compose.yml` file in the background.
 
-The command above will start the services in the background, build the images and use the docker-compose.yml file to configure the services.
-
-Note that the command needs to be run in the same directory where the docker-compose.yml file is located.
+Note that the command needs to be run in the same directory where the `docker-compose.yml` file is located.
 
 ### Step 2. Send stream configuration.
 
