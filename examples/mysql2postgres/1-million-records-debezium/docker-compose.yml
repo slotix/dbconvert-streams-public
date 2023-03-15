@@ -54,19 +54,19 @@ services:
      - OFFSET_STORAGE_TOPIC=my_connect_offsets
      - STATUS_STORAGE_TOPIC=my_source_connect_statuses
 
-  pgadmin:
-    container_name: pgadmin
-    image: dpage/pgadmin4:latest
-    #restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: postgres@dbconvert.com
-      PGADMIN_DEFAULT_PASSWORD: postgres
-    depends_on:
-      - postgres-target
-    # volumes: 
-      # !!!! sudo chown -R 5050:5050 <host_directory>
-      # !!!! sudo chown 5050:5050 client.key client.crt ca.crt
-      # - ./_storage/pgadmin:/var/lib/pgadmin
-    ports:
-      - "5050:80"
-    network_mode: host
+  # pgadmin:
+  #   container_name: pgadmin
+  #   image: dpage/pgadmin4:latest
+  #   #restart: always
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: postgres@dbconvert.com
+  #     PGADMIN_DEFAULT_PASSWORD: postgres
+  #   depends_on:
+  #     - postgres-target
+  #   # volumes: 
+  #     # !!!! sudo chown -R 5050:5050 <host_directory>
+  #     # !!!! sudo chown 5050:5050 client.key client.crt ca.crt
+  #     # - ./_storage/pgadmin:/var/lib/pgadmin
+  #   ports:
+  #     - "5050:80"
+  #   network_mode: host
