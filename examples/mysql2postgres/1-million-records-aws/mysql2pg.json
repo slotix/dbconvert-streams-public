@@ -1,0 +1,19 @@
+{
+  "source": {
+    "type": "mysql",
+    "connection": "admin:12345678@tcp(database-1.cssv1n52dnnd.eu-central-1.rds.amazonaws.com:3306)/source",
+    "filter": {
+      "tables": [
+        { "name": "products", "operations": ["insert"]}
+      ]
+    }
+  },
+  "target": {
+    "type": "postgresql",
+    "connection": "postgres://postgres:postgres@postgres-database.cssv1n52dnnd.eu-central-1.rds.amazonaws.com:5432/postgres"
+  },
+  "limits": {
+    "numberOfEvents": 1000000,
+    "elapsedTime": 0
+  }
+}
