@@ -1,6 +1,7 @@
 {
   "source": {
     "type": "postgresql",
+    "mode": "cdc",
     "connection": "postgres://postgres:postgres@postgres-source:5432/postgres",
     "initialLoad": false,
     "filter": {

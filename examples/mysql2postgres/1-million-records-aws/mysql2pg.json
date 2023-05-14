@@ -1,6 +1,7 @@
 {
   "source": {
     "type": "mysql",
+    "mode": "cdc",
     "connection": "admin:12345678@tcp(database-1.cssv1n52dnnd.eu-central-1.rds.amazonaws.com:3306)/source",
     "filter": {
       "tables": [

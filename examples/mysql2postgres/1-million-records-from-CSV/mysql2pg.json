@@ -1,6 +1,7 @@
 {
   "source": {
     "type": "mysql",
+    "mode": "cdc",
     "connection": "root:123456@tcp(mysql-source:3306)/source",
     "filter": {
       "tables": [
