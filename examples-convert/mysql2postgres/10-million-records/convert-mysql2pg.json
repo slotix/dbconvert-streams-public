@@ -1,0 +1,15 @@
+{
+  "source": {
+    "type": "mysql",
+    "mode": "convert",
+    "connection": "root:123456@tcp(mysql-source:3306)/source"
+  },
+  "target": {
+    "type": "postgresql",
+    "connection": "postgres://postgres:postgres@postgres-target:5432/postgres"
+  },
+  "limits": {
+    "numberOfEvents": 0,
+    "elapsedTime": 0
+  }
+}
