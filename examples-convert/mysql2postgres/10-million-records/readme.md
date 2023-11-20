@@ -62,7 +62,7 @@ docker exec -it \
     mysql -uroot -p123456 -D source
 ```
 
-In MySQL prompt, execute the following script to generate 1M records in the source table:
+In MySQL prompt, execute the following script to generate 10M records in the source table:
 ```sql
 INSERT INTO products (name, price, weight)
 SELECT
