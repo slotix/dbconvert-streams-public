@@ -1,6 +1,7 @@
 # DBConvert Streams Docker images, Examples.
 
 This repository contains several examples of using DBConvert Streams, e.g. configuration files, Docker files.
+Feel free to open an issue if you have any questions or comments.
 
 ## What is DBConvert Streams?
 [DBConvert Streams (DBS)](https://stream.dbconvert.com/guide/introduction) is a distributed platform for heterogeneous database conversion and real-time data replication. 
