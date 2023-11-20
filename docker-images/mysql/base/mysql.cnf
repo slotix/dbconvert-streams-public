@@ -1,5 +1,5 @@
 [mysqld]
-#
+secure-file-priv = ""
 # ----------------------------------------------
 # Enable the binlog for replication & CDC
 # ----------------------------------------------
