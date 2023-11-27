@@ -38,16 +38,19 @@ services:
     depends_on:
       - dbs-source-reader
 
+     
   nats:
     container_name: nats
     image: nats
     entrypoint: /nats-server
-    command: "--jetstream -m 8222 --store_dir /data/nats-server"
+    # command: "-c /etc/nats/nats.conf --jetstream -m 8222 --store_dir /data/nats-server"
+    command: "-c /etc/nats/nats.conf -m 8222"
     ports:
       - 4222:4222
       - 8222:8222
-    # volumes:
-    #   - ../_storage/nats:/data/nats-server/jetstream
+    volumes:
+       - ./nats/:/etc/nats
+
 
   prometheus:
     image: slotix/dbs-prometheus:latest
