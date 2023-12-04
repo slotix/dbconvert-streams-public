@@ -3,6 +3,7 @@
     "type": "mysql",
     "mode": "cdc",
     "connection": "root:123456@tcp(mysql-source:3306)/source",
+    "reportingInterval": 5,
     "filter": {
       "tables": [
         { "name": "products", "operations": ["insert"]}
@@ -11,7 +12,8 @@
   },
   "target": {
     "type": "postgresql",
-    "connection": "postgres://postgres:postgres@postgres-target:5432/postgres"
+    "connection": "postgres://postgres:postgres@postgres-target:5432/postgres",
+    "reportingInterval": 5
   },
   "limits": {
     "numberOfEvents": 1000000,

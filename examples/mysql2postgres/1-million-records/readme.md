@@ -108,6 +108,9 @@ LIMIT 1000000;
 ```
 
 ### Step 4. Control the process. 
+>This step is obsolete now and can be omitted. DBConvert Streams is able to report its progress by itself when the `reportingInterval` is set to something other than 0 (in seconds). It allows users to define the frequency at which progress reports are generated to keep users informed about the status of data transfer.
+
+
 In the next terminal run the following command to control the process.  
 ```bash
 watch -n 1 'curl --request GET --url http://0.0.0.0:8020/api/v1/streams/stat | jq' 
