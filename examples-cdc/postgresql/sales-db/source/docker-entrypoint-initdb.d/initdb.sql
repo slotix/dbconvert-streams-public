@@ -83,4 +83,4 @@ CREATE TABLE IF NOT EXISTS order_status (
 	  REFERENCES status_name(status_name_id)  
 );
 
-CREATE DATABASE target;
+-- CREATE DATABASE target;
