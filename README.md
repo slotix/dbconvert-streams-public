@@ -22,7 +22,7 @@ Welcome to DBConvert Streams! This repository provides examples, configuration f
 
 ## Blazing Speed
 
-DBConvert Streams is engineered for speed! In the latest performance tests, migrating 50 million records—totaling approximately 150 GB of data—from MySQL to Postgres was completed in a staggering 21 minutes and 10 seconds. Experience unprecedented efficiency in your database migration and replication processes.
+> DBConvert Streams, the speedster of database migration tools, raced through the latest performance tests with finesse. Picture this: 50 million records, around 150 GB of data, zooming from MySQL to Postgres in just over 20 minutes. And here's the cherry on top—speeds reaching up to 120 Mb per second. Brace yourself for unparalleled efficiency in your database migration and replication processes!
 
 ![test results](https://github.com/slotix/dbconvert-streams-public/blob/main/assets/images/50M-Recs.png)
 
