@@ -12,7 +12,7 @@ To enable Change Data Capture (CDC) in MariaDB, the server must be configured fo
 log-bin
 server_id=1
 log-basename=master1
-binlog-format=mixed
+binlog-format=row
 binlog_row_event_max_size=16384
 
 bind-address = 0.0.0.0
