@@ -30,7 +30,6 @@ Welcome to DBConvert Streams! This repository provides examples, configuration f
 ## Supported Databases:
 
 DBConvert Streams currently supports the following databases:
-
 - MySQL
 - MariaDB
 - Percona
