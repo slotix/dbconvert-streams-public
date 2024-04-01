@@ -1,0 +1,33 @@
+{
+  "source": {
+    "type": "mysql",
+    "mode": "convert",
+    "connection": "root:123456@tcp(mysql-source:3306)/source",
+    "dataBundleSize": 100,
+    "reportingInterval": 1,
+    "filter": {
+      "tables": [
+        {
+          "name": "products",
+          "query": "SELECT * FROM products ORDER BY product_name"
+        },
+        {
+          "name": "customers",
+          "query": "SELECT * FROM customers WHERE `registration_date` > '2023-01-03' ORDER BY `registration_date`"
+        },
+        {
+          "name": "sales",
+          "query": "SELECT * FROM sales WHERE `total_amount` > 300 ORDER BY `total_amount`"
+        },
+        {
+          "name": "employees"
+        }
+      ]
+    }
+  },
+  "target": {
+    "type": "postgresql",
+    "connection": "postgres://postgres:postgres@postgres-target:5432/postgres",
+    "reportingInterval": 1
+  }
+}

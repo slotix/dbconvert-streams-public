@@ -1,0 +1,85 @@
+services:
+  dbs-api:
+    container_name: api
+    image: slotix/dbs-api
+    entrypoint:
+      - ./dbs-api
+      - --nats=nats:4222
+    ports:
+      - 8020:8020
+    depends_on:
+      - nats
+    volumes:
+      - ./config.json:/config.json:ro
+
+  dbs-source-reader:
+    container_name: source-reader
+    image: slotix/dbs-source-reader
+    entrypoint:
+      - ./dbs-source-reader
+      - --nats=nats:4222
+    ports:
+      - 8021:8021
+    depends_on:
+      - dbs-api
+
+  dbs-target-writer:
+    container_name: target-writer
+    image: slotix/dbs-target-writer
+    entrypoint:
+      - ./dbs-target-writer
+      - --nats=nats:4222
+    ports:
+      - 8022:8022
+    depends_on:
+      - dbs-api
+
+
+  dbs-target-writer2:
+    container_name: target-writer2
+    image: slotix/dbs-target-writer
+    entrypoint:
+      - ./dbs-target-writer
+      - --nats=nats:4222
+    ports:
+      - 8023:8023
+    depends_on:
+      - dbs-api
+
+
+  nats:
+    container_name: nats
+    image: nats
+    entrypoint: /nats-server
+    # command: "-c /etc/nats/nats.conf --jetstream -m 8222 --store_dir /data/nats-server"
+    command: "-c /etc/nats/nats.conf -m 8222"
+    ports:
+      - 4222:4222
+      - 8222:8222
+      - 8081:8081
+    volumes:
+       - ./nats/:/etc/nats
+
+
+  mysql-source:
+    container_name: mysql-source
+    build: ./source 
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    ports:
+      - '3306:3306'
+
+
+  postgres-target:
+    container_name: postgres-target
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    command: postgres
+    # volumes:
+      # - ./_storage/postgres-data:/var/lib/postgresql/data
+      # - ./init-db:/docker-entrypoint-initdb.d
+    ports:
+      - '5432:5432'
+

@@ -2,39 +2,81 @@
 
 The Custom SQL Queries feature of DBConvert Streams empowers users with granular control over data retrieval from the source database tables.
 
-## Key points
+## Key Points
 
 - Flexibility and Control: Users can specify custom SQL queries for individual tables in the filter section, tailoring data retrieval to their specific requirements.
-- Conditions, Ordering, Limiting: Customize queries for each table, incorporating conditions, ordering, limiting, and more.
-- Enhanced Configuration: The filter section in the configuration now includes a "query" parameter for each table definition.
+- Conditions, Ordering, and Limiting: Customize queries for each table by incorporating conditions, ordering, limiting, and more.
+- Enhanced Configuration: The filter section in the configuration now includes a `query` parameter for each table definition.
 
-## Configuration Example
+## Steps to Use
 
-```json
-{
-  "source": {
-    "type": "mysql",
-    "mode": "convert",
-    "connection": "root:123456@tcp(0.0.0.0:3306)/source",
-    "dataBundleSize": 100,
-    "reportingInterval": 5,
-    "filter": {
-      "tables": [
-        {
-          "name": "products",
-          "query": "SELECT * FROM products LIMIT 3000000 OFFSET 100000"
-        },
-        {
-          "name": "another_table",
-          "query": "SELECT * FROM another_table WHERE storage > 10 LIMIT 3042"
-        }
-      ]
-    }
-  },
-  "target": {
-    "type": "postgresql",
-    "connection": "postgres://postgres:postgres@0.0.0.0:5432/postgres",
-    "reportingInterval": 5
-  }
-}
+### 1. Start Services
+
+```bash
+docker compose up --build -d
+```
+
+This command will build and start the services listed in `docker-compose.yml` file.
+
+Connect to the MySQL Container
+```bash
+mysql -h 127.0.0.1 -uroot -p
+```
+
+After connecting to the MySQL container, you will see the following:
+
+```bash
+MySQL [source]> show tables;
++------------------+
+| Tables_in_source |
++------------------+
+| attendance       |
+| customers        |
+| employees        |
+| products         |
+| sales            |
++------------------+
+5 rows in set (0.003 sec)
+```
+
+So you will have 5 tables in MySQL populated with sample data.
+
+### 2. Send Conversion Configuration to DBConvert Streams API
+
+```bash
+curl --request POST --url http://127.0.0.1:8020/api/v1/streams\?file=./config.json
+```
+
+### 3. Check the Data on the PostgreSQL Target Container
+```bash
+psql --host=0.0.0.0 --port=5432 --username=postgres --password --dbname=postgres
+```
+
+Now you will see the following:
+
+```sql
+psql (16.2, server 15.5)
+Type "help" for help.
+
+postgres=# \dt
+           List of relations
+ Schema |   Name    | Type  |  Owner   
+--------+-----------+-------+----------
+ public | customers | table | postgres
+ public | employees | table | postgres
+ public | products  | table | postgres
+ public | sales     | table | postgres
+(4 rows)
+
+postgres=# select count(*) from products; 
+ count 
+-------
+     6
+(1 row)
+
+postgres=# select count(*) from customers; 
+ count 
+-------
+     3
+(1 row)
 ```
