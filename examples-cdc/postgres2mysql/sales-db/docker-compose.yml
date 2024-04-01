@@ -1,4 +1,3 @@
-version: '3.9'
 services:
   dbs-api:
     container_name: api
@@ -6,8 +5,6 @@ services:
     entrypoint:
       - ./dbs-api
       - --nats=nats:4222
-      - --source=source-reader:8021
-      - --target=target-writer:8022
     ports:
       - 8020:8020
     depends_on:
@@ -36,7 +33,7 @@ services:
     ports:
       - 8022:8022
     depends_on:
-      - dbs-source-reader
+      - dbs-api
 
   nats:
     container_name: nats
@@ -46,6 +43,7 @@ services:
     ports:
       - 4222:4222
       - 8222:8222
+      - 8081:8081
     # volumes:
     #   - ../_storage/nats:/data/nats-server/jetstream
 
