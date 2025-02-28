@@ -1,4 +1,3 @@
-
 <p align="center">
   <img src="assets/images/dbconvert-stream-logo.svg" width="300" alt="DBConvert Streams Logo">
 </p>
@@ -9,16 +8,15 @@ This repository provides examples, configuration files, and Docker files for uti
 
 ## What is DBConvert Streams?
 
-[DBConvert Streams (DBS)](https://stream.dbconvert.com/guide/introduction) is a cutting-edge distributed platform designed for data migration between heterogeneous databases and real-time data replication. It simplifies the process of transferring data between on-premises or cloud databases, including relational databases and data warehouses. DBConvert Streams operates in two modes:
+[DBConvert Streams (DBS)](https://streams.dbconvert.com) is a cutting-edge distributed platform designed for data migration between heterogeneous databases and real-time data replication. It simplifies the process of transferring data between on-premises or cloud databases, including relational databases and data warehouses. DBConvert Streams operates in two modes:
 
 ### Modes of Data Transfer:
 
-1. **Dat migration (Conversion) Mode:**
+1. **Data migration (Conversion) Mode:**
    Quickly transfer data between on-premises or cloud databases, whether they are relational or data warehouses.
 
 2. **CDC (Change Data Capture) Mode:**
    Stream changes from the source to the target database using [change data capture](https://dbconvert.com/blog/change-data-capture-cdc-what-it-is-and-how-it-works/) technology. DBConvert Streams keeps track of the source database, capturing all `Insert,` `Update,` and `Delete` row-level changes, allowing your applications to respond to events with minimal latency.
-
 
 ### Workflow.
 
@@ -38,13 +36,11 @@ This repository provides examples, configuration files, and Docker files for uti
 
 8. **Completion Notification**: Once all data is successfully transferred to the target database, target writers send a completion notification, indicating the end of the data transfer process.
 
-
 ## Blazing Speed
 
 > DBConvert Streams, the speedster of database migration tools, raced through the latest performance tests with finesse. Picture this: 50 million records, around 150 GB of data, zooming from MySQL to Postgres in just over 20 minutes. And here's the cherry on top—speeds reaching up to 120 Mb per second. Brace yourself for unparalleled efficiency in your database migration and replication processes!
 
 ![test results](https://github.com/slotix/dbconvert-streams-public/blob/main/assets/images/50M-Recs.png)
-
 
 ## Supported Databases:
 
@@ -63,28 +59,39 @@ DBConvert Streams currently supports the following databases:
 
 The native DBConvert Binaries are available for the following operating systems:
 
+- Docker images
 - Linux AMD 64
 - Linux ARM 64
 - Apple macOS
-- Windows
-- Docker images
 
 ## Getting Started:
 
-### Download DBConvert Streams:
+### Deployment Options:
 
-Links to the latest binaries are available at [DBConvert Streams releases](https://stream.dbconvert.com/dbs-releases).
+#### Docker Deployment
 
-Alternatively, you can start DBConvert Streams via [Docker images](https://github.com/slotix/dbconvert-streams-public/blob/main/docker-images/docker-compose.yml).
+The recommended approach for most environments is to deploy DBConvert Streams using Docker containers.
 
-### Deployment:
+For detailed Docker deployment instructions, visit our [Docker Deployment Guide](https://docs.dbconvert.com/deployment/docker.html).
+
+#### Binary Deployment
+
+For environments where Docker is not available, you can deploy DBConvert Streams using binary packages:
+
+1. Download the appropriate package for your operating system from our [download page](https://streams.dbconvert.com)
+2. Extract the package to your desired location
+3. Configure the application using the provided configuration files
+4. Start the service using the included scripts
+
+For detailed binary deployment instructions, visit our [Binary Deployment Guide](https://docs.dbconvert.com/deployment/binary.html).
+
+### Cloud Deployment:
 
 DBConvert Streams can be deployed on the following cloud platforms:
 
 - [Amazon Web Services (AWS)](https://stream.dbconvert.com/guide/deploy-ec2)
 - Google Cloud
 - Microsoft Azure
-
 
 ## 📢 Calling all DBConvert Streams users! 📢
 
@@ -93,6 +100,5 @@ Your feedback matters! We want to hear from you about your experience with DBCon
 [👉 Click here to participate in the poll 👈](https://github.com/slotix/dbconvert-streams-public/discussions/33)
 
 Thank you for your time and valuable input! Your feedback is crucial in shaping the future of DBConvert Streams.
-
 
 Feel the power of seamless database conversion and real-time replication with DBConvert Streams!
