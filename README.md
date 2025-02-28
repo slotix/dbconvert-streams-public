@@ -76,13 +76,6 @@ For detailed Docker deployment instructions, visit our [Docker Deployment Guide]
 
 #### Binary Deployment
 
-For environments where Docker is not available, you can deploy DBConvert Streams using binary packages:
-
-1. Download the appropriate package for your operating system from our [download page](https://streams.dbconvert.com)
-2. Extract the package to your desired location
-3. Configure the application using the provided configuration files
-4. Start the service using the included scripts
-
 For detailed binary deployment instructions, visit our [Binary Deployment Guide](https://docs.dbconvert.com/deployment/binary.html).
 
 ### Cloud Deployment:
