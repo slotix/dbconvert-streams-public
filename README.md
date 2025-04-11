@@ -2,39 +2,58 @@
   <img src="assets/images/dbconvert-stream-logo.svg" width="300" alt="DBConvert Streams Logo">
 </p>
 
-# DBConvert Streams: Database Conversion and Real-time Replication
+# DBConvert Streams: Real-time Database Replication and Migration
 
-This repository provides examples, configuration files, and Docker files for utilizing DBConvert Streams in various scenarios. If you have any questions or comments, feel free to open an issue.
+A distributed platform for seamless data migration and real-time replication between database systems. Designed for high performance, reliability, and ease of use.
+
+## Quick Start
+
+Get started in minutes with our one-line installer:
+
+```bash
+curl -fsSL https://dbconvert.nyc3.digitaloceanspaces.com/downloads/streams/latest/docker-install.sh | sh
+```
 
 ## What is DBConvert Streams?
 
-[DBConvert Streams (DBS)](https://streams.dbconvert.com) is a cutting-edge distributed platform designed for data migration between heterogeneous databases and real-time data replication. It simplifies the process of transferring data between on-premises or cloud databases, including relational databases and data warehouses. DBConvert Streams operates in two modes:
+[DBConvert Streams](https://streams.dbconvert.com) is a powerful distributed platform for data migration between heterogeneous databases and real-time data replication. It seamlessly transfers data between on-premises or cloud databases, including relational databases and data warehouses.
 
-### Modes of Data Transfer:
+### Operating Modes
 
-1. **Data migration (Conversion) Mode:**
-   Quickly transfer data between on-premises or cloud databases, whether they are relational or data warehouses.
+1. **Data Migration (Convert Mode)**
+   Efficiently transfer data between databases with optimized performance and full structure mapping.
 
-2. **CDC (Change Data Capture) Mode:**
-   Stream changes from the source to the target database using [change data capture](https://dbconvert.com/blog/change-data-capture-cdc-what-it-is-and-how-it-works/) technology. DBConvert Streams keeps track of the source database, capturing all `Insert,` `Update,` and `Delete` row-level changes, allowing your applications to respond to events with minimal latency.
+2. **CDC (Change Data Capture) Mode**
+   Stream changes from source to target database in real-time, capturing all `INSERT`, `UPDATE`, and `DELETE` operations with minimal latency.
 
-### Workflow.
+## Key Features
 
-1. **Reader Component**: Retrieves the meta-structure of tables and indexes from the source database.
+- **Modern Dashboard UI** - Comprehensive monitoring and management interface
+- **One-Click Deployment** - Rapid installation on all major cloud platforms
+- **Advanced Monitoring** - Real-time metrics and comprehensive system health visibility
+- **Schema Management** - Automated schema mapping and evolution handling
+- **High Performance** - 50 million records (150 GB) transferred in ~20 minutes with speeds up to 120 MB/s
+- **Enterprise Security** - Built-in encryption, access controls, and security compliance
 
-2. **Forwarding to NATS**: The retrieved meta structures are forwarded to Event Hub (NATS), serving as a messaging system for communication between components.
+## Dashboard UI Screenshots
 
-3. **Target Writer Selection**: Among the available target writers, a specific one is chosen to handle the execution of `CREATE TABLE`, `CREATE INDEX` DDL statements on the target Database.
+The DBConvert Streams dashboard provides a modern, intuitive interface for managing your entire data migration and replication workflow. With its comprehensive monitoring capabilities and streamlined operation, you can efficiently control all aspects of your data streams.
 
-4. **DDL Translation and Structure Creation**: The chosen target writer translates DDLs and attempts to create the corresponding structure on the target database. During this phase, other target writers remain inactive until the structure creation process is completed.
+### Quick Deploy Options
 
-5. **Notification and Data Reception**: Once the `CREATE TABLE`, `CREATE INDEX` DDLs are successfully executed, indicating the creation of table structures on the target database, the chosen target writer notifies other target writers to proceed with receiving data.
+The DBConvert Streams dashboard provides a centralized interface for managing your data streams and monitoring system status.
 
-6. **Data Transfer**: Data transfer involves fetching data from the source database in batches to optimize performance and reduce resource consumption. Batch size is configurable based on factors such as network latency, database load, and system resources.
+![DBConvert Streams Quick Start Options](assets/images/sshot-start.webp)
 
-7. **Logging and Monitoring**: Throughout the data transfer process, comprehensive logging and monitoring mechanisms track progress, identify errors or anomalies, and ensure timely resolution.
+### Connection Management
+Easily configure and manage database connections through our visual interface. Create, edit, and test connections with support for advanced options like SSL/TLS configuration and custom parameters:
 
-8. **Completion Notification**: Once all data is successfully transferred to the target database, target writers send a completion notification, indicating the end of the data transfer process.
+![DBConvert Streams Connection Management](assets/images/sshot-connections.webp)
+
+### Real-time Monitoring
+Track your data streams with detailed real-time metrics. The monitoring dashboard provides comprehensive insights into transfer rates, progress, and system performance with visual indicators for each stage of the process:
+
+![DBConvert Streams Monitoring Dashboard](assets/images/sshot-monitor.png)
 
 ## Blazing Speed
 
@@ -42,9 +61,35 @@ This repository provides examples, configuration files, and Docker files for uti
 
 ![test results](https://github.com/slotix/dbconvert-streams-public/blob/main/assets/images/50M-Recs.png)
 
-## Supported Databases:
+## Deployment Options
 
-DBConvert Streams currently supports the following databases:
+### Quick Deploy
+
+Choose your preferred deployment method:
+
+#### Docker Installation (Recommended)
+Use our one-line installer for instant setup:
+```bash
+curl -fsSL https://dbconvert.nyc3.digitaloceanspaces.com/downloads/streams/latest/docker-install.sh | sh
+```
+
+#### Cloud Deployment
+Deploy on your preferred cloud platform:
+
+**Enterprise Options:**
+- Amazon Web Services (AWS)
+- Google Cloud Platform (GCP)
+- Microsoft Azure
+
+**Standard Options:**
+- DigitalOcean
+- Vultr
+- Hetzner Cloud
+
+Visit our [documentation](https://docs.dbconvert.com/deployment/docker.html) for detailed deployment instructions.
+
+## Supported Databases
+
 - MySQL
 - MariaDB
 - Percona
@@ -54,44 +99,27 @@ DBConvert Streams currently supports the following databases:
 - Amazon Aurora (MySQL Compatible)
 - Amazon RDS for PostgreSQL
 - Amazon Aurora (PostgreSQL Compatible)
+- Google Cloud SQL
+- Azure Database
 
-## Supported Platforms:
+## Supported Operating Systems
 
-The native DBConvert Binaries are available for the following operating systems:
+- Ubuntu
+- Debian
+- CentOS
+- RHEL
+- Fedora
+- Windows
+- macOS 
 
-- Docker images
-- Linux AMD 64
-- Linux ARM 64
-- Apple macOS
+## Learn More
 
-## Getting Started:
+- [Dashboard UI Guide](https://docs.dbconvert.com/guide/dashboard-ui-guide.html)
+- [Technical Documentation](https://docs.dbconvert.com)
+- [What's New](https://streams.dbconvert.com/whats-new)
 
-### Deployment Options:
+## Feedback and Support
 
-#### Docker Deployment
+Your feedback matters! If you have any questions or comments, feel free to open an issue in this repository.
 
-The recommended approach for most environments is to deploy DBConvert Streams using Docker containers.
-
-For detailed Docker deployment instructions, visit our [Docker Deployment Guide](https://docs.dbconvert.com/deployment/docker.html).
-
-#### Binary Deployment
-
-For detailed binary deployment instructions, visit our [Binary Deployment Guide](https://docs.dbconvert.com/deployment/binary.html).
-
-### Cloud Deployment:
-
-DBConvert Streams can be deployed on the following cloud platforms:
-
-- [Amazon Web Services (AWS)](https://stream.dbconvert.com/guide/deploy-ec2)
-- Google Cloud
-- Microsoft Azure
-
-## 📢 Calling all DBConvert Streams users! 📢
-
-Your feedback matters! We want to hear from you about your experience with DBConvert Streams. Please take a moment to participate in our User Feedback Poll. Your insights will help us improve our product to better meet your needs.
-
-[👉 Click here to participate in the poll 👈](https://github.com/slotix/dbconvert-streams-public/discussions/33)
-
-Thank you for your time and valuable input! Your feedback is crucial in shaping the future of DBConvert Streams.
-
-Feel the power of seamless database conversion and real-time replication with DBConvert Streams!
+[Contact our support team](https://streams.dbconvert.com/contact) for enterprise assistance.
