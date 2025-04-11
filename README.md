@@ -6,6 +6,8 @@
 
 A distributed platform for seamless data migration and real-time replication between database systems. Designed for high performance, reliability, and ease of use.
 
+> **Note:** This is a public repository for example configurations, documentation, and issue tracking. The core backend code of DBConvert Streams is proprietary, while the frontend UI is open source and available at [github.com/slotix/dbconvert-streams-ui](https://github.com/slotix/dbconvert-streams-ui).
+
 ## Quick Start
 
 Get started in minutes with our one-line installer:
