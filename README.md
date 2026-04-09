@@ -2,15 +2,25 @@
   <img src="assets/images/dbconvert-stream-logo.svg" width="300" alt="DBConvert Streams Logo">
 </p>
 
-# DBConvert Streams: Real-time Database Replication and Migration
+# DBConvert Streams 2.0: Database IDE, Federated SQL & Real-time CDC
 
-A distributed platform for seamless data migration and real-time replication between database systems. Designed for high performance, reliability, and ease of use.
+Explore, query, and replicate data — all in one tool. A database IDE with federated SQL across databases and files, combined with high-performance data migration and real-time Change Data Capture (CDC).
 
 > **Note:** This is a public repository for example configurations, documentation, and issue tracking. The core backend code of DBConvert Streams is proprietary, while the frontend UI is open source and available at [github.com/slotix/dbconvert-streams-ui](https://github.com/slotix/dbconvert-streams-ui).
 
 ## Quick Start
 
-Get started in minutes with our one-line installer:
+### Desktop App
+
+Download and install for your platform — no account required:
+
+- [Windows](https://streams.dbconvert.com/download)
+- [macOS](https://streams.dbconvert.com/download)
+- [Linux](https://streams.dbconvert.com/download)
+
+### Self-Hosted (Docker)
+
+Deploy for team access via browser:
 
 ```bash
 curl -fsSL https://dbconvert.nyc3.digitaloceanspaces.com/downloads/streams/latest/docker-install.sh | sh
@@ -18,110 +28,113 @@ curl -fsSL https://dbconvert.nyc3.digitaloceanspaces.com/downloads/streams/lates
 
 ## What is DBConvert Streams?
 
-[DBConvert Streams](https://streams.dbconvert.com) is a powerful distributed platform for data migration between heterogeneous databases and real-time data replication. It seamlessly transfers data between on-premises or cloud databases, including relational databases and data warehouses.
+[DBConvert Streams](https://streams.dbconvert.com) is a database IDE and data streaming platform. It combines a free database workspace with powerful data migration and real-time CDC replication between databases and file-based sources.
 
-### Operating Modes
-
-1. **Data Migration (Convert Mode)**
-   Efficiently transfer data between databases with optimized performance and full structure mapping.
-
-2. **CDC (Change Data Capture) Mode**
-   Stream changes from source to target database in real-time, capturing all `INSERT`, `UPDATE`, and `DELETE` operations with minimal latency.
+Browse databases, local files, and S3 storage. Edit data directly. Run federated SQL queries that join tables across different database engines — all without intermediate exports.
 
 ## Key Features
 
-- **Modern Dashboard UI** - Comprehensive monitoring and management interface
-- **One-Click Deployment** - Rapid installation on all major cloud platforms
-- **Advanced Monitoring** - Real-time metrics and comprehensive system health visibility
-- **Schema Management** - Automated schema mapping and evolution handling
-- **High Performance** - 50 million records (150 GB) transferred in ~20 minutes with speeds up to 120 MB/s
-- **Enterprise Security** - Built-in encryption, access controls, and security compliance
+### Database IDE & Workspace (Free)
+- **Data Explorer** — Browse schemas, edit data inline with staged changes and review
+- **ER Diagrams** — Visualize database relationships
+- **Schema Comparison** — Compare schemas and data across databases
+- **Schema Navigation** — Persistent state and search across connections
 
-## Dashboard UI Screenshots
+### Federated SQL
+- Execute SQL queries across multiple databases and file sources simultaneously
+- Join live PostgreSQL and MySQL tables using connection aliases
+- Query CSV, JSON, Parquet files and S3 storage alongside databases
 
-The DBConvert Streams dashboard provides a modern, intuitive interface for managing your entire data migration and replication workflow. With its comprehensive monitoring capabilities and streamlined operation, you can efficiently control all aspects of your data streams.
+### Data Migration (Convert Mode)
+Rapidly move large datasets between databases with automatic schema conversion and validation.
 
-### Quick Deploy Options
+> **Performance:** 23 million rows (4.38 GB) migrated from MySQL to Parquet in 35.7 seconds at 136 MB/s.
 
-The DBConvert Streams dashboard provides a centralized interface for managing your data streams and monitoring system status.
+### Real-time CDC (Change Data Capture)
+Stream `INSERT`, `UPDATE`, and `DELETE` operations from source to target in real-time with minimal latency. Supports CDC to databases, files, and S3 storage.
 
-![DBConvert Streams Quick Start Options](assets/images/sshot-start.webp)
+## Screenshots
 
-### Connection Management
-Easily configure and manage database connections through our visual interface. Create, edit, and test connections with support for advanced options like SSL/TLS configuration and custom parameters:
+### Data Explorer
+Browse schemas, view and edit data across multiple database connections with a unified tree navigation:
 
-![DBConvert Streams Connection Management](assets/images/sshot-connections.webp)
+![DBConvert Streams Data Explorer](assets/images/sshot-data-explorer.webp)
 
-### Real-time Monitoring
-Track your data streams with detailed real-time metrics. The monitoring dashboard provides comprehensive insights into transfer rates, progress, and system performance with visual indicators for each stage of the process:
+### Federated SQL
+Join tables across MySQL, PostgreSQL, and file sources (CSV, Parquet) in a single query:
 
-![DBConvert Streams Monitoring Dashboard](assets/images/sshot-monitor.png)
+![DBConvert Streams Federated SQL](assets/images/sshot-federated-sql.webp)
 
-## Blazing Speed
+### ER Diagrams
+Visualize database relationships with interactive entity-relationship diagrams:
 
-> DBConvert Streams, the speedster of database migration tools, raced through the latest performance tests with finesse. Picture this: 50 million records, around 150 GB of data, zooming from MySQL to Postgres in just over 20 minutes. And here's the cherry on top—speeds reaching up to 120 Mb per second. Brace yourself for unparalleled efficiency in your database migration and replication processes!
+![DBConvert Streams ER Diagram](assets/images/sshot-er-diagram.webp)
 
-![test results](https://github.com/slotix/dbconvert-streams-public/blob/main/assets/images/50M-Recs.png)
+### Stream Configuration
+Configure data migration and CDC streams with table selection, custom queries, and transfer settings:
 
-## Deployment Options
+![DBConvert Streams Configuration](assets/images/sshot-configure-stream.webp)
 
-### Quick Deploy
+### Stream Monitoring
+Track data streams with real-time metrics — rows, data size, transfer rates, and per-table progress:
 
-Choose your preferred deployment method:
+![DBConvert Streams Monitor](assets/images/sshot-stream-monitor.webp)
 
-#### Docker Installation (Recommended)
-Use our one-line installer for instant setup:
-```bash
-curl -fsSL https://dbconvert.nyc3.digitaloceanspaces.com/downloads/streams/latest/docker-install.sh | sh
-```
+## Supported Sources & Targets
 
-#### Cloud Deployment
-Deploy on your preferred cloud platform:
-
-**Enterprise Options:**
-- Amazon Web Services (AWS)
-- Google Cloud Platform (GCP)
-- Microsoft Azure
-
-**Standard Options:**
-- DigitalOcean
-- Vultr
-- Hetzner Cloud
-
-Visit our [documentation](https://docs.dbconvert.com/deployment/docker.html) for detailed deployment instructions.
-
-## Supported Databases
-
-- MySQL
-- MariaDB
-- Percona
-- PostgreSQL
-- CockroachDB
-- Amazon RDS for MySQL
-- Amazon Aurora (MySQL Compatible)
-- Amazon RDS for PostgreSQL
-- Amazon Aurora (PostgreSQL Compatible)
+### Databases
+- MySQL / MariaDB / Percona
+- PostgreSQL / CockroachDB
+- Amazon RDS (MySQL, PostgreSQL)
+- Amazon Aurora (MySQL, PostgreSQL Compatible)
 - Google Cloud SQL
 - Azure Database
 
-## Supported Operating Systems
+### File Formats & Storage
+- Parquet
+- CSV
+- JSON / JSONL
+- S3-compatible storage
 
-- Ubuntu
-- Debian
-- CentOS
-- RHEL
-- Fedora
-- Windows
-- macOS 
+## Deployment Options
+
+| Method | Description |
+|--------|-------------|
+| **Desktop** | Windows, macOS, Linux — local setup, no account required |
+| **Self-hosted** | Docker / Docker Compose — team access via browser |
+
+## Pricing
+
+| Plan | Price | Includes |
+|------|-------|----------|
+| **IDE** | Free forever | Database workspace, Data Explorer, Federated SQL |
+| **Streams** | $49/month or $399/year per seat | Convert mode, CDC, all integrations |
+
+Evaluation limits: 500 MB for Convert mode, 48 hours for CDC.
+
+## Examples
+
+This repository includes ready-to-use Docker Compose examples:
+
+### Convert (Data Migration)
+- [PostgreSQL → MySQL](examples-convert/postgres2mysql/) — Sales database migration
+- [MySQL → PostgreSQL](examples-convert/mysql2postgres/) — 10 million records benchmark
+- [Custom SQL Queries](examples-convert/custom-queries/) — Selective migration with WHERE filters
+
+### CDC (Change Data Capture)
+- [MySQL → MySQL](examples-cdc/mysql/) — Same-engine CDC replication
+- [PostgreSQL → PostgreSQL](examples-cdc/postgresql/) — PostgreSQL logical decoding
+- [MySQL → PostgreSQL](examples-cdc/mysql2postgres/) — Cross-database CDC (includes 1M records, AWS, CSV, and Debezium variants)
+- [PostgreSQL → MySQL](examples-cdc/postgres2mysql/) — Reverse direction CDC
 
 ## Learn More
 
-- [Dashboard UI Guide](https://docs.dbconvert.com/guide/dashboard-ui-guide.html)
-- [Technical Documentation](https://docs.dbconvert.com)
+- [Documentation](https://streams.dbconvert.com/docs/)
+- [What's New in 2.0](https://streams.dbconvert.com/blog/dbconvert-streams-2-0/)
 - [What's New](https://streams.dbconvert.com/whats-new)
 
 ## Feedback and Support
 
-Your feedback matters! If you have any questions or comments, feel free to open an issue in this repository.
+Have questions or feedback? Open an issue in this repository.
 
 [Contact our support team](https://streams.dbconvert.com/contact) for enterprise assistance.
