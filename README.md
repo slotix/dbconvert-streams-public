@@ -6,7 +6,11 @@
 
 Database IDE + migration + real-time CDC — in one workflow.
 
-Query data, move it, and keep it in sync — without switching between tools.
+Query data, 
+move it, 
+keep it in sync 
+
+without switching between tools.
 
 If this looks useful, consider giving it a ⭐
 
@@ -30,7 +34,11 @@ DBConvert Streams combines these into one workspace.
 
 Think of it as:
 
-**DBeaver / DataGrip** + **a migration tool** + **CDC** → in one place
+DBeaver / DataGrip  
++ migration tool  
++ CDC
+
+but without switching tools every time
 
 ---
 
@@ -85,8 +93,10 @@ Browse databases, local files, and S3 storage. Edit data directly. Run federated
 
 ## Key Features
 
+in practice, it comes down to this:
+
 ### Database IDE & Workspace (Free)
-- **Data Explorer** — Browse schemas, edit data inline with staged changes and review
+- **Data Explorer** — Bbrowse databases, files, and S3 in one place
 - **ER Diagrams** — Visualize database relationships
 - **Schema Comparison** — Compare schemas and data across databases
 - **Schema Navigation** — Persistent state and search across connections
@@ -103,6 +113,13 @@ Rapidly move large datasets between databases with automatic schema conversion a
 
 ### Real-time CDC (Change Data Capture)
 Stream `INSERT`, `UPDATE`, and `DELETE` operations from source to target in real-time with minimal latency. Supports CDC to databases, files, and S3 storage.
+
+
+## When this is probably not for you
+
+- you need 100+ connectors (SaaS, APIs, etc.)
+- you already run Kafka pipelines at scale
+- you need complex ETL / transformations
 
 ## Screenshots
 
