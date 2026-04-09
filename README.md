@@ -6,10 +6,13 @@
 
 Database IDE + migration + real-time CDC — in one workflow.
 
-Work with data without switching between tools:
-query it, move it, and keep it in sync — in one place.
+Query data, move it, and keep it in sync — without switching between tools.
+
+If this looks useful, consider giving it a ⭐
 
 ---
+
+### Why this exists
 
 Most setups look like this:
 
@@ -17,16 +20,44 @@ Most setups look like this:
 - scripts or tools for migration
 - a separate CDC pipeline
 
-DBConvert Streams combines all of it into one workspace.
+It works, but it's fragmented.
+
+DBConvert Streams combines these into one workspace.
+
+---
+
+### What it feels like
+
+Think of it as:
+
+**DBeaver / DataGrip** + **a migration tool** + **CDC** → in one place
+
+---
+
+### Example
+
+Run queries across databases and files:
 
 ```sql
--- Join a Parquet file with a live Postgres table — no import needed
 SELECT *
 FROM read_parquet('orders.parquet') o
 JOIN postgres.public.customers c
   ON o.customer_id = c.id
 LIMIT 10;
 ```
+
+Then use the same query as a data source — and stream it anywhere.
+
+---
+
+### What you can do
+
+- explore databases, files, and S3
+- run SQL across multiple sources
+- move data between systems
+- keep it in sync with CDC
+
+All in the same workflow.
 
 > **Note:** This is a public repository for example configurations, documentation, and issue tracking. The core backend code of DBConvert Streams is proprietary, while the frontend UI is open source and available at [github.com/slotix/dbconvert-streams-ui](https://github.com/slotix/dbconvert-streams-ui).
 
@@ -48,11 +79,7 @@ curl -fsSL https://dbconvert.nyc3.digitaloceanspaces.com/downloads/streams/lates
 
 ## What is DBConvert Streams?
 
-Think of it as DBeaver (or DataGrip) + a migration tool + CDC — combined into one workspace.
-
 [DBConvert Streams](https://streams.dbconvert.com) is a database IDE with built-in migration and real-time CDC.
-
-The full workflow in one place: explore → validate → move → replicate.
 
 Browse databases, local files, and S3 storage. Edit data directly. Run federated SQL queries that join tables across different database engines — no intermediate exports needed.
 
