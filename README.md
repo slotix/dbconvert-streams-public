@@ -6,25 +6,25 @@
 
 Database IDE + migration + real-time CDC — in one workflow.
 
-Explore data, move it, and keep it in sync without switching between tools.
+Work with data without switching between tools:
+query it, move it, and keep it in sync — in one place.
 
 ---
 
-Instead of:
+Most setups look like this:
 
 - a DB client for queries
-- scripts for migration
-- a separate CDC setup
+- scripts or tools for migration
+- a separate CDC pipeline
 
-You work in one place.
+DBConvert Streams combines all of it into one workspace.
 
 ```sql
--- Join across PostgreSQL, MySQL, and a CSV file in a single query
-SELECT m.title AS mysql_title, p.title AS postgres_title, csv.title AS file_title
-FROM my1.sakila.film m
-JOIN pg1.public.film p ON m.film_id = p.film_id
-JOIN read_csv_auto('./film/*.csv') csv ON m.film_id = csv.film_id
-WHERE m.title LIKE 'A%'
+-- Join a Parquet file with a live Postgres table — no import needed
+SELECT *
+FROM read_parquet('orders.parquet') o
+JOIN postgres.public.customers c
+  ON o.customer_id = c.id
 LIMIT 10;
 ```
 
