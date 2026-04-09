@@ -12,11 +12,7 @@ Explore, query, and replicate data — all in one tool. A database IDE with fede
 
 ### Desktop App
 
-Download and install for your platform — no account required:
-
-- [Windows](https://streams.dbconvert.com/download)
-- [macOS](https://streams.dbconvert.com/download)
-- [Linux](https://streams.dbconvert.com/download)
+[Download](https://streams.dbconvert.com/download) for Windows, macOS, or Linux — no account required.
 
 ### Self-Hosted (Docker)
 
@@ -105,12 +101,7 @@ Track data streams with real-time metrics — rows, data size, transfer rates, a
 
 ## Pricing
 
-| Plan | Price | Includes |
-|------|-------|----------|
-| **IDE** | Free forever | Database workspace, Data Explorer, Federated SQL |
-| **Streams** | $49/month or $399/year per seat | Convert mode, CDC, all integrations |
-
-Evaluation limits: 500 MB for Convert mode, 48 hours for CDC.
+The Database IDE is **free forever**. For data migration and CDC streaming, see [pricing details](https://streams.dbconvert.com/pricing).
 
 ## Examples
 
@@ -131,10 +122,7 @@ This repository includes ready-to-use Docker Compose examples:
 
 - [Documentation](https://streams.dbconvert.com/docs/)
 - [What's New in 2.0](https://streams.dbconvert.com/blog/dbconvert-streams-2-0/)
-- [What's New](https://streams.dbconvert.com/whats-new)
 
 ## Feedback and Support
 
-Have questions or feedback? Open an issue in this repository.
-
-[Contact our support team](https://streams.dbconvert.com/contact) for enterprise assistance.
+Have questions or feedback? Use [Discussions](https://github.com/slotix/dbconvert-streams-public/discussions) or open an [Issue](https://github.com/slotix/dbconvert-streams-public/issues).
