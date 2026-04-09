@@ -2,27 +2,37 @@
   <img src="assets/images/dbconvert-stream-logo.svg" width="300" alt="DBConvert Streams Logo">
 </p>
 
-# DBConvert Streams 2.0: Database IDE, Federated SQL & Real-time CDC
+# DBConvert Streams 2.0
 
-Database IDE + migration + real-time CDC — one workflow instead of three tools.
+Database IDE + migration + real-time CDC — in one workflow.
 
-Explore data, run queries, move it, and keep it in sync in one place.
+Explore data, move it, and keep it in sync without switching between tools.
 
 ---
 
-Most setups look like this:
+Instead of:
 
-- a database client for queries
-- scripts or tools for migration
-- something else for CDC
+- a DB client for queries
+- scripts for migration
+- a separate CDC setup
 
-DBConvert Streams combines all of that into a single workspace.
+You work in one place.
 
-No switching between tools in the middle of a task.
+```sql
+-- Join across PostgreSQL, MySQL, and a CSV file in a single query
+SELECT m.title AS mysql_title, p.title AS postgres_title, csv.title AS file_title
+FROM my1.sakila.film m
+JOIN pg1.public.film p ON m.film_id = p.film_id
+JOIN read_csv_auto('./film/*.csv') csv ON m.film_id = csv.film_id
+WHERE m.title LIKE 'A%'
+LIMIT 10;
+```
 
 > **Note:** This is a public repository for example configurations, documentation, and issue tracking. The core backend code of DBConvert Streams is proprietary, while the frontend UI is open source and available at [github.com/slotix/dbconvert-streams-ui](https://github.com/slotix/dbconvert-streams-ui).
 
 ## Quick Start
+
+Runs anywhere — your laptop, a VPS, or your own infra. No cloud dependency, no vendor lock-in.
 
 ### Desktop App
 
@@ -30,7 +40,7 @@ No switching between tools in the middle of a task.
 
 ### Self-Hosted (Docker)
 
-Deploy for team access via browser:
+Deploy on any machine with Docker — a local server, a VPS (DigitalOcean, Hetzner, AWS EC2, etc.), or your own infrastructure:
 
 ```bash
 curl -fsSL https://dbconvert.nyc3.digitaloceanspaces.com/downloads/streams/latest/docker-install.sh | sh
@@ -38,23 +48,13 @@ curl -fsSL https://dbconvert.nyc3.digitaloceanspaces.com/downloads/streams/lates
 
 ## What is DBConvert Streams?
 
-### Why it exists
-
-Most tools solve only part of the workflow:
-
-- IDEs help you explore data
-- migration tools move it
-- CDC tools keep it in sync
-
-But they don't work together.
-
-DBConvert Streams brings these pieces into one place.
+Think of it as DBeaver (or DataGrip) + a migration tool + CDC — combined into one workspace.
 
 [DBConvert Streams](https://streams.dbconvert.com) is a database IDE with built-in migration and real-time CDC.
 
-It's designed to cover the full workflow: explore → validate → move → replicate.
+The full workflow in one place: explore → validate → move → replicate.
 
-Browse databases, local files, and S3 storage. Edit data directly. Run federated SQL queries that join tables across different database engines — all without intermediate exports.
+Browse databases, local files, and S3 storage. Edit data directly. Run federated SQL queries that join tables across different database engines — no intermediate exports needed.
 
 ## Key Features
 
@@ -122,10 +122,12 @@ Track data streams with real-time metrics — rows, data size, transfer rates, a
 
 ## Deployment Options
 
+Run it anywhere — no cloud account required, no vendor lock-in.
+
 | Method | Description |
 |--------|-------------|
 | **Desktop** | Windows, macOS, Linux — local setup, no account required |
-| **Self-hosted** | Docker / Docker Compose — team access via browser |
+| **Self-hosted** | Docker / Docker Compose on any machine — local server, VPS, or your own infra |
 
 ## Pricing
 
