@@ -4,7 +4,21 @@
 
 # DBConvert Streams 2.0: Database IDE, Federated SQL & Real-time CDC
 
-Explore, query, and replicate data — all in one tool. A database IDE with federated SQL across databases and files, combined with high-performance data migration and real-time Change Data Capture (CDC).
+Database IDE + migration + real-time CDC — one workflow instead of three tools.
+
+Explore data, run queries, move it, and keep it in sync in one place.
+
+---
+
+Most setups look like this:
+
+- a database client for queries
+- scripts or tools for migration
+- something else for CDC
+
+DBConvert Streams combines all of that into a single workspace.
+
+No switching between tools in the middle of a task.
 
 > **Note:** This is a public repository for example configurations, documentation, and issue tracking. The core backend code of DBConvert Streams is proprietary, while the frontend UI is open source and available at [github.com/slotix/dbconvert-streams-ui](https://github.com/slotix/dbconvert-streams-ui).
 
@@ -24,7 +38,21 @@ curl -fsSL https://dbconvert.nyc3.digitaloceanspaces.com/downloads/streams/lates
 
 ## What is DBConvert Streams?
 
-[DBConvert Streams](https://streams.dbconvert.com) is a database IDE and data streaming platform. It combines a free database workspace with powerful data migration and real-time CDC replication between databases and file-based sources.
+### Why it exists
+
+Most tools solve only part of the workflow:
+
+- IDEs help you explore data
+- migration tools move it
+- CDC tools keep it in sync
+
+But they don't work together.
+
+DBConvert Streams brings these pieces into one place.
+
+[DBConvert Streams](https://streams.dbconvert.com) is a database IDE with built-in migration and real-time CDC.
+
+It's designed to cover the full workflow: explore → validate → move → replicate.
 
 Browse databases, local files, and S3 storage. Edit data directly. Run federated SQL queries that join tables across different database engines — all without intermediate exports.
 
