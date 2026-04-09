@@ -133,19 +133,20 @@ Track data streams with real-time metrics — rows, data size, transfer rates, a
 
 ## Supported Sources & Targets
 
-### Databases
+### Sources
 - MySQL / MariaDB / Percona
 - PostgreSQL / CockroachDB
-- Amazon RDS (MySQL, PostgreSQL)
-- Amazon Aurora (MySQL, PostgreSQL Compatible)
-- Google Cloud SQL
-- Azure Database
+- Amazon RDS, Aurora, Google Cloud SQL, Azure Database
+- Local files (CSV, JSONL, Parquet)
+- S3-compatible storage (AWS S3, MinIO, DigitalOcean Spaces, Wasabi)
 
-### File Formats & Storage
-- Parquet
-- CSV
-- JSON / JSONL
-- S3-compatible storage
+### Targets
+- MySQL / PostgreSQL
+- Snowflake
+- CSV / JSONL / Parquet (local files)
+- Amazon S3 / MinIO / S3-compatible storage
+- Google Cloud Storage (GCS)
+- Azure Blob Storage
 
 ## Deployment Options
 
@@ -162,18 +163,178 @@ The Database IDE is **free forever**. For data migration and CDC streaming, see 
 
 ## Examples
 
-This repository includes ready-to-use Docker Compose examples:
+In v2, connections are managed separately and stream configs reference them by ID. Here are typical workflows via the API.
 
-### Convert (Data Migration)
-- [PostgreSQL → MySQL](examples-convert/postgres2mysql/) — Sales database migration
-- [MySQL → PostgreSQL](examples-convert/mysql2postgres/) — 10 million records benchmark
-- [Custom SQL Queries](examples-convert/custom-queries/) — Selective migration with WHERE filters
+### 1. Create connections
 
-### CDC (Change Data Capture)
-- [MySQL → MySQL](examples-cdc/mysql/) — Same-engine CDC replication
-- [PostgreSQL → PostgreSQL](examples-cdc/postgresql/) — PostgreSQL logical decoding
-- [MySQL → PostgreSQL](examples-cdc/mysql2postgres/) — Cross-database CDC (includes 1M records, AWS, CSV, and Debezium variants)
-- [PostgreSQL → MySQL](examples-cdc/postgres2mysql/) — Reverse direction CDC
+```bash
+# Create a MySQL source connection
+curl -X POST http://localhost:8020/api/v1/connections \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "mysql-source",
+    "type": "mysql",
+    "host": "localhost",
+    "port": 3306,
+    "username": "root",
+    "password": "password"
+  }'
+
+# Create a PostgreSQL target connection
+curl -X POST http://localhost:8020/api/v1/connections \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "pg-target",
+    "type": "postgresql",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "password"
+  }'
+```
+
+### 2. MySQL → PostgreSQL (convert)
+
+One-time migration with table selection:
+
+```json
+{
+  "name": "mysql-to-postgres-migration",
+  "mode": "convert",
+  "source": {
+    "connections": [{
+      "connectionId": "<mysql-connection-id>",
+      "database": "sakila",
+      "tables": [
+        { "name": "actor" },
+        { "name": "film" },
+        { "name": "customer" }
+      ]
+    }]
+  },
+  "target": {
+    "id": "<pg-connection-id>",
+    "spec": {
+      "db": {
+        "database": "target_db",
+        "schema": "public",
+        "schemaPolicy": "drop_and_recreate"
+      }
+    }
+  }
+}
+```
+
+### 3. MySQL → PostgreSQL (CDC)
+
+Real-time replication capturing inserts, updates, and deletes:
+
+```json
+{
+  "name": "mysql-to-postgres-cdc",
+  "mode": "cdc",
+  "source": {
+    "connections": [{
+      "connectionId": "<mysql-connection-id>",
+      "database": "sakila",
+      "tables": [
+        { "name": "actor" },
+        { "name": "film" }
+      ]
+    }],
+    "options": {
+      "operations": ["insert", "update", "delete"]
+    }
+  },
+  "target": {
+    "id": "<pg-connection-id>",
+    "spec": {
+      "db": {
+        "database": "target_db",
+        "writeMode": "upsert"
+      }
+    }
+  }
+}
+```
+
+### 4. PostgreSQL → S3 Parquet (convert)
+
+Export database tables to Parquet files on S3:
+
+```json
+{
+  "name": "pg-to-s3-parquet",
+  "mode": "convert",
+  "source": {
+    "connections": [{
+      "connectionId": "<pg-connection-id>",
+      "database": "analytics",
+      "tables": [
+        { "name": "orders" },
+        { "name": "customers" }
+      ]
+    }]
+  },
+  "target": {
+    "id": "<s3-connection-id>",
+    "spec": {
+      "s3": {
+        "fileFormat": "parquet",
+        "upload": {
+          "bucket": "my-data-lake",
+          "prefix": "exports/"
+        }
+      }
+    }
+  }
+}
+```
+
+### 5. Multi-source federated query (convert)
+
+Join data from MySQL and PostgreSQL into one target:
+
+```json
+{
+  "name": "federated-migration",
+  "mode": "convert",
+  "source": {
+    "connections": [
+      {
+        "alias": "my1",
+        "connectionId": "<mysql-connection-id>",
+        "database": "sakila"
+      },
+      {
+        "alias": "pg1",
+        "connectionId": "<pg-connection-id>",
+        "database": "dvdrental"
+      }
+    ]
+  },
+  "target": {
+    "id": "<target-connection-id>",
+    "spec": {
+      "db": { "database": "warehouse" }
+    }
+  }
+}
+```
+
+### 6. Start a stream
+
+```bash
+curl -X POST http://localhost:8020/api/v1/stream-configs/<config-id>/start
+```
+
+### 7. Monitor progress
+
+```bash
+curl http://localhost:8020/api/v1/streams/<stream-id>/stats
+```
+
+> See the full [API documentation](https://streams.dbconvert.com/docs/) for all endpoints and options.
 
 ## Learn More
 
