@@ -1,0 +1,18 @@
+services:
+  mysql-source:
+    container_name: mysql-source
+    build: ./source
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    ports:
+      - '3306:3306'
+
+  postgres-target:
+    container_name: postgres-target
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    command: postgres
+    ports:
+      - '5432:5432'

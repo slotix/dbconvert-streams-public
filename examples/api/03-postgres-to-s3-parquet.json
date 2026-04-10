@@ -1,0 +1,26 @@
+{
+  "name": "pg-to-s3-parquet",
+  "mode": "convert",
+  "source": {
+    "connections": [{
+      "connectionId": "${PG_CONN_ID}",
+      "database": "analytics",
+      "tables": [
+        { "name": "orders" },
+        { "name": "customers" }
+      ]
+    }]
+  },
+  "target": {
+    "id": "${S3_CONN_ID}",
+    "spec": {
+      "s3": {
+        "fileFormat": "parquet",
+        "upload": {
+          "bucket": "my-data-lake",
+          "prefix": "exports/"
+        }
+      }
+    }
+  }
+}

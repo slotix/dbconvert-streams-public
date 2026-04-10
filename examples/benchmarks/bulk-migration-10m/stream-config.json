@@ -1,0 +1,23 @@
+{
+  "name": "mysql-to-postgres-10m",
+  "mode": "convert",
+  "source": {
+    "connections": [{
+      "connectionId": "${MYSQL_CONN_ID}",
+      "database": "source",
+      "tables": [
+        { "name": "products" }
+      ]
+    }]
+  },
+  "target": {
+    "id": "${PG_CONN_ID}",
+    "spec": {
+      "db": {
+        "database": "postgres",
+        "schema": "public",
+        "schemaPolicy": "drop_and_recreate"
+      }
+    }
+  }
+}

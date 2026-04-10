@@ -1,0 +1,26 @@
+{
+  "name": "mysql-to-postgres-cdc",
+  "mode": "cdc",
+  "source": {
+    "connections": [{
+      "connectionId": "${MYSQL_CONN_ID}",
+      "database": "sakila",
+      "tables": [
+        { "name": "actor" },
+        { "name": "film" }
+      ]
+    }],
+    "options": {
+      "operations": ["insert", "update", "delete"]
+    }
+  },
+  "target": {
+    "id": "${PG_CONN_ID}",
+    "spec": {
+      "db": {
+        "database": "target_db",
+        "writeMode": "upsert"
+      }
+    }
+  }
+}

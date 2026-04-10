@@ -1,0 +1,25 @@
+{
+  "name": "mysql-to-postgres-migration",
+  "mode": "convert",
+  "source": {
+    "connections": [{
+      "connectionId": "${MYSQL_CONN_ID}",
+      "database": "sakila",
+      "tables": [
+        { "name": "actor" },
+        { "name": "film" },
+        { "name": "customer" }
+      ]
+    }]
+  },
+  "target": {
+    "id": "${PG_CONN_ID}",
+    "spec": {
+      "db": {
+        "database": "target_db",
+        "schema": "public",
+        "schemaPolicy": "drop_and_recreate"
+      }
+    }
+  }
+}

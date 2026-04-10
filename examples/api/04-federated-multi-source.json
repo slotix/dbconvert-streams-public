@@ -1,0 +1,24 @@
+{
+  "name": "federated-migration",
+  "mode": "convert",
+  "source": {
+    "connections": [
+      {
+        "alias": "my1",
+        "connectionId": "${MYSQL_CONN_ID}",
+        "database": "sakila"
+      },
+      {
+        "alias": "pg1",
+        "connectionId": "${PG_CONN_ID}",
+        "database": "dvdrental"
+      }
+    ]
+  },
+  "target": {
+    "id": "${TARGET_CONN_ID}",
+    "spec": {
+      "db": { "database": "warehouse" }
+    }
+  }
+}

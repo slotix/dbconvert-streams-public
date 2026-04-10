@@ -350,7 +350,7 @@ curl -X POST http://localhost:8020/api/v1/stream-configs/<config-id>/start
 curl http://localhost:8020/api/v1/streams/<stream-id>/stats
 ```
 
-> See the full [API documentation](https://streams.dbconvert.com/docs/) for all endpoints and options.
+> See the full [API documentation](https://streams.dbconvert.com/docs/) for all endpoints and options. Standalone stream-config files live in [`examples/api/`](examples/api/), and reproducible benchmarks (including a side-by-side vs Debezium) are in [`examples/benchmarks/`](examples/benchmarks/).
 
 ## Learn More
 
