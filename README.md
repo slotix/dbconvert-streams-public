@@ -179,7 +179,9 @@ The Database IDE is **free forever**. For data migration and CDC streaming, see 
 
 ## Examples
 
-In v2, connections are managed separately and stream configs reference them by ID. Here are typical workflows via the API.
+> **Most people never touch the API.** The UI covers connections, table selection, federated SQL, stream configuration, and monitoring end-to-end. The `curl` examples below are for users who want to script deployments, wire DBConvert Streams into CI/CD, or drive it from another service — not a required workflow.
+
+Connections are managed separately and stream configs reference them by ID. Here are typical workflows via the API.
 
 ### 1. Create connections
 
