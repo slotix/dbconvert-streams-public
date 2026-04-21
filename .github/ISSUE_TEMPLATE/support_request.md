@@ -12,7 +12,7 @@ Clear description of your goal.
 - DBConvert Streams version:
 - Source Database:
 - Target Database:
-- Mode (CDC/Convert):
+- Mode (CDC/Load):
 
 **What have you tried?**
 Steps you've taken so far.

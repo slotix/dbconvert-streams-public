@@ -1,6 +1,6 @@
 {
   "name": "federated-migration",
-  "mode": "convert",
+  "mode": "load",
   "source": {
     "connections": [
       {

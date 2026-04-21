@@ -1,6 +1,6 @@
 # MySQL to PostgreSQL: 10 Million Records
 
-Convert 10 million records from a MySQL `products` table to PostgreSQL.
+Load 10 million records from a MySQL `products` table into PostgreSQL.
 
 ## Prerequisites
 
@@ -71,7 +71,7 @@ LIMIT 10000000;
 ./setup.sh
 ```
 
-This creates the connections, configures the stream, and starts the conversion.
+This creates the connections, configures the stream, and starts the load.
 
 ### 4. Monitor progress and verify
 

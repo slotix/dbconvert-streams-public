@@ -1,6 +1,6 @@
 {
   "name": "pg-to-s3-parquet",
-  "mode": "convert",
+  "mode": "load",
   "source": {
     "connections": [{
       "connectionId": "${PG_CONN_ID}",

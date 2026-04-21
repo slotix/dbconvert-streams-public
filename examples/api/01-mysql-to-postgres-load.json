@@ -1,6 +1,6 @@
 {
   "name": "mysql-to-postgres-migration",
-  "mode": "convert",
+  "mode": "load",
   "source": {
     "connections": [{
       "connectionId": "${MYSQL_CONN_ID}",

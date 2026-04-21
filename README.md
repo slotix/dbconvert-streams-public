@@ -106,7 +106,7 @@ In practice, it comes down to this:
 - Join live PostgreSQL and MySQL tables using connection aliases
 - Query CSV, JSON, Parquet files and S3 storage alongside databases
 
-### Data Migration (Convert Mode)
+### Data Migration (Load Mode)
 Rapidly move large datasets between databases with automatic schema conversion and validation.
 
 > **Performance:** 23 million rows (4.38 GB) migrated from MySQL to Parquet in 35.7 seconds at 136 MB/s.
@@ -211,14 +211,14 @@ curl -X POST http://localhost:8020/api/v1/connections \
   }'
 ```
 
-### 2. MySQL → PostgreSQL (convert)
+### 2. MySQL → PostgreSQL (load)
 
 One-time migration with table selection:
 
 ```json
 {
   "name": "mysql-to-postgres-migration",
-  "mode": "convert",
+  "mode": "load",
   "source": {
     "connections": [{
       "connectionId": "<mysql-connection-id>",
@@ -276,14 +276,14 @@ Real-time replication capturing inserts, updates, and deletes:
 }
 ```
 
-### 4. PostgreSQL → S3 Parquet (convert)
+### 4. PostgreSQL → S3 Parquet (load)
 
 Export database tables to Parquet files on S3:
 
 ```json
 {
   "name": "pg-to-s3-parquet",
-  "mode": "convert",
+  "mode": "load",
   "source": {
     "connections": [{
       "connectionId": "<pg-connection-id>",
@@ -309,14 +309,14 @@ Export database tables to Parquet files on S3:
 }
 ```
 
-### 5. Multi-source federated query (convert)
+### 5. Multi-source federated query (load)
 
 Join data from MySQL and PostgreSQL into one target:
 
 ```json
 {
   "name": "federated-migration",
-  "mode": "convert",
+  "mode": "load",
   "source": {
     "connections": [
       {

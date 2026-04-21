@@ -17,7 +17,7 @@ Explain how this feature would help you use DBConvert Streams more effectively.
 ## Environment Details (if relevant)
 - Source Database Type/Version: (e.g., MySQL 8.0, PostgreSQL 13)
 - Target Database Type/Version: (e.g., PostgreSQL 14, MySQL 8.0)
-- Transfer Mode: (CDC/Convert)
+- Transfer Mode: (CDC/Load)
 - Deployment Type: (Docker/Binary)
 
 ## Current Workaround

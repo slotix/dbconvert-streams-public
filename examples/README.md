@@ -34,7 +34,7 @@ The response includes an `id` — use it as `MYSQL_CONN_ID` below.
 export MYSQL_CONN_ID=...
 export PG_CONN_ID=...
 
-envsubst < api/01-mysql-to-postgres-convert.json | \
+envsubst < api/01-mysql-to-postgres-load.json | \
   curl -X POST http://localhost:8020/api/v1/stream-configs \
     -H "Content-Type: application/json" \
     -d @-
@@ -53,10 +53,10 @@ See the full [API documentation](https://streams.dbconvert.com/docs/) for all en
 
 | File | Mode | Description |
 |------|------|-------------|
-| `api/01-mysql-to-postgres-convert.json` | convert | One-time MySQL → PostgreSQL migration with table selection |
+| `api/01-mysql-to-postgres-load.json` | load | One-time MySQL → PostgreSQL migration with table selection |
 | `api/02-mysql-to-postgres-cdc.json` | cdc | Real-time MySQL → PostgreSQL replication (insert/update/delete) |
-| `api/03-postgres-to-s3-parquet.json` | convert | Export PostgreSQL tables to Parquet on S3 |
-| `api/04-federated-multi-source.json` | convert | Join data from MySQL and PostgreSQL into a single target |
+| `api/03-postgres-to-s3-parquet.json` | load | Export PostgreSQL tables to Parquet on S3 |
+| `api/04-federated-multi-source.json` | load | Join data from MySQL and PostgreSQL into a single target |
 
 ## Benchmarks
 

@@ -1,6 +1,6 @@
 {
   "name": "mysql-to-postgres-10m",
-  "mode": "convert",
+  "mode": "load",
   "source": {
     "connections": [{
       "connectionId": "${MYSQL_CONN_ID}",
