@@ -1,0 +1,26 @@
+{
+  "name": "mysql-parquet-complex-bench",
+  "mode": "load",
+  "source": {
+    "connections": [
+      {
+        "connectionId": "${MYSQL_CONN_ID}",
+        "database": "bench_complex",
+        "tables": [
+          { "name": "complex_types_bench" }
+        ]
+      }
+    ],
+    "options": {
+      "dataBundleSize": 500
+    }
+  },
+  "target": {
+    "id": "${FILE_CONN_ID}",
+    "spec": {
+      "files": {
+        "fileFormat": "parquet"
+      }
+    }
+  }
+}

@@ -61,4 +61,5 @@ See the full [API documentation](https://streams.dbconvert.com/docs/) for all en
 ## Benchmarks
 
 - **`benchmarks/bulk-migration-10m/`** — 10 million-row MySQL → PostgreSQL migration. Backs the throughput numbers in the main README.
+- **`benchmarks/mysql-parquet-complex/`** — 5 million-row MySQL → Parquet export with native JSON columns (nested objects, arrays, nullable fields). Measures serialisation overhead vs scalar types.
 - **`benchmarks/cdc-vs-debezium/`** — Side-by-side CDC throughput comparison against a Debezium + Kafka Connect pipeline. Includes Prometheus + JMX exporter for metrics.
