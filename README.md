@@ -8,7 +8,8 @@ Database IDE + migration + real-time CDC — in one workflow.
 
 Query data,<br>
 move it,<br>
-keep it in sync
+keep it in sync,<br>
+and let your AI assistant see it all
 
 without switching between tools.
 
@@ -64,6 +65,7 @@ Then use the same query as a data source — and stream it anywhere.
 - run SQL across multiple sources
 - move data between systems
 - keep it in sync with CDC
+- connect Claude, Cursor, or Copilot — the AI reads your live schemas, data, and streams (read-only, via MCP)
 
 All in the same workflow.
 
@@ -106,6 +108,14 @@ In practice, it comes down to this:
 - Join live PostgreSQL and MySQL tables using connection aliases
 - Query CSV, JSON, Parquet files and S3 storage alongside databases
 
+### AI Assistants via MCP — new in 2.4
+- Built-in MCP server: Claude, Cursor, VS Code Copilot, Windsurf, Gemini CLI, and Codex read live schemas, data, and stream state — no more pasting DDL into chat
+- **26 read-only tools**: describe tables, run read-only SQL, federated queries, stream diagnostics, file & S3 browsing
+- One-click setup from the ✨ AI Assistants panel; Docker deployments expose `/mcp` over HTTP(S)
+- Read-only by design: only `SELECT` passes the server-side filter — the AI can look and advise, never write
+
+[Docs: AI Assistants via MCP →](https://streams.dbconvert.com/docs/mcp)
+
 ### Data Migration (Load Mode)
 Rapidly move large datasets between databases with automatic schema conversion and validation.
 
@@ -146,6 +156,11 @@ Configure data migration and CDC streams with table selection, custom queries, a
 Track data streams with real-time metrics — rows, data size, transfer rates, and per-table progress:
 
 ![DBConvert Streams Monitor](assets/images/sshot-stream-monitor.webp)
+
+### AI Assistants
+Connect your AI client with one click — it reads the same workspace you see, read-only:
+
+![DBConvert Streams AI Assistants panel](assets/images/sshot-ai-assistants.png)
 
 ## Supported Sources & Targets
 
