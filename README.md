@@ -1,8 +1,4 @@
-<p align="center">
-  <img src="assets/images/dbconvert-stream-logo.svg" width="300" alt="DBConvert Streams Logo">
-</p>
-
-# DBConvert Streams 2.0
+# <img src="assets/images/dbconvert-stream-logo.svg" width="38" alt="DBConvert Streams logo" align="top"> DBConvert Streams
 
 Database IDE + migration + real-time CDC — in one workflow.
 
@@ -372,7 +368,7 @@ curl http://localhost:8020/api/v1/streams/<stream-id>/stats
 ## Learn More
 
 - [Documentation](https://streams.dbconvert.com/docs/)
-- [What's New in 2.0](https://streams.dbconvert.com/blog/dbconvert-streams-2-0/)
+- [What's New](https://streams.dbconvert.com/whats-new)
 
 ## Feedback and Support
 
