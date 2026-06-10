@@ -65,7 +65,7 @@ Then use the same query as a data source — and stream it anywhere.
 
 All in the same workflow.
 
-> **Note:** This is a public repository for example configurations, documentation, and issue tracking. The core backend code of DBConvert Streams is proprietary, while the frontend UI is open source and available at [github.com/slotix/dbconvert-streams-ui](https://github.com/slotix/dbconvert-streams-ui).
+> **Note:** This is the public home of DBConvert Streams — example configurations, documentation, issue tracking, and release notes. The product itself is proprietary.
 
 ## Quick Start
 
