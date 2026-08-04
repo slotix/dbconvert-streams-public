@@ -104,6 +104,21 @@ In practice, it comes down to this:
 - Join live PostgreSQL and MySQL tables using connection aliases
 - Query CSV, JSON, Parquet files and S3 storage alongside databases
 
+### Built-in AI Chat — new in 2.5.0
+
+Ask about the database work already open in the **desktop app**: a table, view,
+file, SQL console, connection, or migration/CDC stream. AI Chat starts with that
+live workspace context, so it can inspect schemas and data, explain or repair a
+failed query, and diagnose stream status without asking you to paste DDL into a
+separate chat.
+
+Use your own installed agent CLI — Claude Code, Codex, GitHub Copilot CLI, or
+OpenCode. AI Chat automatically supplies the relevant scoped subset of
+DBConvert's read-only tools and shows tool activity while it works; it cannot
+change connections, configuration, streams, or data.
+
+[Docs: AI Chat →](https://streams.dbconvert.com/docs/ai-chat)
+
 ### AI Assistants via MCP — new in 2.4
 - Built-in MCP server: Claude, Cursor, VS Code Copilot, Windsurf, Gemini CLI, and Codex read live schemas, data, and stream state — no more pasting DDL into chat
 - **27 read-only tools**: inspect workspace connections, schemas, tables and views; run read-only SQL and federated queries; compare schemas and samples; diagnose streams; browse files and S3
