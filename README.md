@@ -106,7 +106,7 @@ In practice, it comes down to this:
 
 ### AI Assistants via MCP — new in 2.4
 - Built-in MCP server: Claude, Cursor, VS Code Copilot, Windsurf, Gemini CLI, and Codex read live schemas, data, and stream state — no more pasting DDL into chat
-- **26 read-only tools**: describe tables, run read-only SQL, federated queries, stream diagnostics, file & S3 browsing
+- **27 read-only tools**: inspect workspace connections, schemas, tables and views; run read-only SQL and federated queries; compare schemas and samples; diagnose streams; browse files and S3
 - One-click setup from the ✨ AI Assistants panel; Docker deployments expose `/mcp` over HTTP(S)
 - Read-only by design: only `SELECT` passes the server-side filter — the AI can look and advise, never write
 
@@ -114,17 +114,56 @@ In practice, it comes down to this:
 
 ## Tools
 
-The MCP server exposes **26 read-only tools**. They are grouped around the
-database workspace already open in DBConvert Streams:
+DBConvert Streams exposes these **27 read-only MCP tools**. The names below
+match the live MCP server.
 
-- **Database and schema inspection** — browse connections, schemas, tables,
-  columns, keys, and sample rows.
-- **Read-only SQL and federated queries** — run `SELECT` queries and join
-  PostgreSQL, MySQL, and file-backed sources without changing data.
-- **Stream diagnostics** — inspect stream status, throughput, recent errors,
-  and logs for migration or CDC troubleshooting.
-- **Files and object storage** — browse CSV, JSONL, Parquet, and S3-backed
-  data available to the workspace.
+### Connections and schema
+
+- `dbconvert_list_connections` — list workspace connections
+- `dbconvert_get_connection` — inspect one connection
+- `dbconvert_list_databases` — list databases
+- `dbconvert_list_schemas` — list schemas
+- `dbconvert_list_tables` — list tables
+- `dbconvert_list_views` — list views
+
+### Table and view inspection
+
+- `dbconvert_describe_table` — inspect table columns and keys
+- `dbconvert_preview_table` — preview table rows
+- `dbconvert_describe_view` — inspect a view
+- `dbconvert_preview_view` — preview view rows
+
+### Read-only SQL
+
+- `dbconvert_run_select` — run a SELECT query
+- `dbconvert_explain_select` — explain a SELECT query
+
+### Schema and data comparison
+
+- `dbconvert_compare_schemas` — compare schemas
+- `dbconvert_compare_data_sample` — compare data samples
+
+### Stream diagnostics
+
+- `dbconvert_list_streams` — list streams
+- `dbconvert_get_stream` — inspect a stream
+- `dbconvert_get_stream_status` — get stream status
+- `dbconvert_get_stream_stats` — get stream throughput and statistics
+- `dbconvert_get_stream_recent_errors` — inspect recent stream errors
+- `dbconvert_get_stream_recent_logs` — inspect recent stream logs
+
+### Files and S3
+
+- `dbconvert_list_files` — list workspace files
+- `dbconvert_get_file_schema` — inspect a file schema
+- `dbconvert_preview_file` — preview file rows
+- `dbconvert_list_s3_buckets` — list S3 buckets
+- `dbconvert_list_s3_objects` — list S3 objects
+
+### Federated SQL
+
+- `dbconvert_run_federated_select` — run a read-only query across sources
+- `dbconvert_explain_federated_select` — explain a federated SELECT query
 
 Only read-only operations are exposed: the server-side filter permits
 `SELECT`, so an AI client cannot alter connections, configuration, streams, or
