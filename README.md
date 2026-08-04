@@ -112,6 +112,24 @@ In practice, it comes down to this:
 
 [Docs: AI Assistants via MCP →](https://streams.dbconvert.com/docs/mcp)
 
+## Tools
+
+The MCP server exposes **26 read-only tools**. They are grouped around the
+database workspace already open in DBConvert Streams:
+
+- **Database and schema inspection** — browse connections, schemas, tables,
+  columns, keys, and sample rows.
+- **Read-only SQL and federated queries** — run `SELECT` queries and join
+  PostgreSQL, MySQL, and file-backed sources without changing data.
+- **Stream diagnostics** — inspect stream status, throughput, recent errors,
+  and logs for migration or CDC troubleshooting.
+- **Files and object storage** — browse CSV, JSONL, Parquet, and S3-backed
+  data available to the workspace.
+
+Only read-only operations are exposed: the server-side filter permits
+`SELECT`, so an AI client cannot alter connections, configuration, streams, or
+data. For client setup, see the [MCP setup guide](https://streams.dbconvert.com/docs/mcp/setup).
+
 ### Data Migration (Load Mode)
 Rapidly move large datasets between databases with automatic schema conversion and validation.
 
