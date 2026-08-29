@@ -75,6 +75,22 @@ Runs anywhere — your laptop, a VPS, or your own infra. No cloud dependency, no
 
 [Download](https://streams.dbconvert.com/download) for Windows, macOS, or Linux — no account required.
 
+### AI client extension
+
+Grab `dbconvert-streams-<version>.mcpb` from [Releases](https://github.com/slotix/dbconvert-streams-public/releases) and drop it into **Claude → Settings → Extensions**. It asks for connection strings and folders, and nothing else has to be installed — no DBConvert Streams, no toolchain, no server to run.
+
+```
+postgres://user:password@host:5432/dbname
+mysql://user:password@host:3306/dbname
+s3://bucket/folder?region=us-east-1
+```
+
+Add folders of Parquet, CSV or JSON files with the folder picker. Every source becomes read-only tools in your chat, and one question can span several of them at once.
+
+One file covers Windows and Linux — the bundle carries a binary for each and picks the right one. macOS is planned for a later release.
+
+The bundled server is proprietary software, distributed under the DBConvert Streams licence. The MIT licence in this repository covers the examples, docs and assets here, not that binary.
+
 ### Self-Hosted (Docker)
 
 Deploy on any machine with Docker — a local server, a VPS (DigitalOcean, Hetzner, AWS EC2, etc.), or your own infrastructure:
