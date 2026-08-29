@@ -85,6 +85,8 @@ mysql://user:password@host:3306/dbname
 s3://bucket/folder?region=us-east-1
 ```
 
+Several sources go in the one field, separated by spaces — `shop=postgres://…  orders=mysql://…` — and a single question can join across all of them.
+
 Add folders of Parquet, CSV or JSON files with the folder picker. Every source becomes read-only tools in your chat, and one question can span several of them at once.
 
 One file covers Windows and Linux — the bundle carries a binary for each and picks the right one. macOS is planned for a later release.
