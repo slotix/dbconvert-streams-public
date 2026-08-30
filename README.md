@@ -91,6 +91,15 @@ Add folders of Parquet, CSV or JSON files with the folder picker. Every source b
 
 One file covers Windows and Linux — the bundle carries a binary for each and picks the right one. macOS is planned for a later release.
 
+**Not a Claude user?** The same server runs as a container, and every MCP client
+that can launch one can use it:
+
+```bash
+docker run -i --rm slotix/stream-mcp "shop=postgres://user:password@host:5432/shop"
+```
+
+Cursor and VS Code can set that up in one click — [Add to Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=dbconvert-streams&config=eyJjb21tYW5kIjoiZG9ja2VyIiwiYXJncyI6WyJydW4iLCItaSIsIi0tcm0iLCJzbG90aXgvc3RyZWFtLW1jcCIsInBvc3RncmVzOi8vdXNlcjpwYXNzd29yZEBob3N0OjU0MzIvZGJuYW1lIl19) · [Add to VS Code](vscode:mcp/install?%7B%22name%22%3A%22dbconvert-streams%22%2C%22command%22%3A%22docker%22%2C%22args%22%3A%5B%22run%22%2C%22-i%22%2C%22--rm%22%2C%22slotix/stream-mcp%22%2C%22postgres%3A//user%3Apassword%40host%3A5432/dbname%22%5D%7D) — then edit the connection string where the client stores it. Folders, S3 keys and the rest: [standalone server](https://streams.dbconvert.com/docs/mcp/standalone).
+
 The bundled server is proprietary software, distributed under the DBConvert Streams licence. The MIT licence in this repository covers the examples, docs and assets here, not that binary.
 
 ### Self-Hosted (Docker)
