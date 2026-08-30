@@ -73,7 +73,7 @@ Runs anywhere — your laptop, a VPS, or your own infra. No cloud dependency, no
 
 ### Desktop App
 
-[Download](https://streams.dbconvert.com/download) for Windows, macOS, or Linux — no account required.
+[Download](https://streams.dbconvert.com/install) for Windows, macOS, or Linux — no account required.
 
 ### AI client extension
 
