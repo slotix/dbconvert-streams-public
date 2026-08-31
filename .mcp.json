@@ -1,0 +1,13 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "dbconvert-streams": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@dbconvert/stream-mcp"],
+      "env": {
+        "DBCONVERT_MCP_SOURCES": "${DBCONVERT_MCP_SOURCES}"
+      }
+    }
+  }
+}

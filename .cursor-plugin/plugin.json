@@ -1,0 +1,23 @@
+{
+  "name": "dbconvert-streams",
+  "displayName": "DBConvert Streams (Federated SQL)",
+  "version": "2.7.3",
+  "description": "Read-only SQL across your PostgreSQL, MySQL, S3 buckets and local data files — one query can join across all of them.",
+  "author": {
+    "name": "DBConvert",
+    "email": "streams@dbconvert.com"
+  },
+  "license": "Proprietary",
+  "keywords": [
+    "mcp",
+    "sql",
+    "postgresql",
+    "mysql",
+    "duckdb",
+    "s3",
+    "parquet",
+    "federated-query",
+    "read-only"
+  ],
+  "homepage": "https://streams.dbconvert.com/docs/mcp/standalone"
+}
